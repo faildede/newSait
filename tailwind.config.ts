@@ -1,6 +1,5 @@
 import type { Config } from "tailwindcss";
 import { nextui } from "@nextui-org/react";
-import next from "next";
 
 const config: Config = {
   darkMode: ["class"],
@@ -42,7 +41,7 @@ const config: Config = {
       },
     },
     fontFamily: {
-      roboto: ["Roboto", "sans-serif"],
+      rubik: ['var(--font-rubik)'],
     },
   },
   plugins: [nextui()],

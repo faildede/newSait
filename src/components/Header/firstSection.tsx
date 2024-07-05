@@ -8,17 +8,17 @@ import ToolTipUI from './ElementUI/TooltipUI';
 
 const FirstSection = () => {
     return (
-        <nav className="text-white font-roboto flex justify-between my-auto py-2 text-sm font-normal">
+        <nav className="text-white flex font-rubik justify-between my-auto py-2 text-sm font-normal">
             <section className='flex'>
                 <FontAwesomeIcon className='py-1 px-2 mx-2 rounded-full bg-grey-1' icon={faLocationDot} />
                 <Tooltip showArrow={true} content={<ToolTipUI />}>
                     <Button>Алмата</Button>
                 </Tooltip>
             </section>
-            <div className="relative overflow-hidden flex">
+            <div className="relative overflow-hidden  flex">
                 {firstHeadItem.map((item) => (
                     <a
-                        className="font-normal text-sm relative block mx-4 group"
+                        className="font-normal text-sm font-rubik relative block mx-4 group"
                         href={item.route}
                         key={item.id}
                     >

@@ -1,12 +1,19 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import "@fortawesome/fontawesome-svg-core/styles.css";
+import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
+import { Rubik } from "next/font/google";
 
 config.autoAddCss = false;
 
-const inter = Inter({ subsets: ["latin"] });
+const rubik = Rubik ({
+  weight: ['400',],
+  style: ['normal'],
+  subsets: ['cyrillic'],
+  display: 'swap',
+  variable: '--font-rubik',
+})
 
 export const metadata: Metadata = {
   title: "gamma-ltd",
@@ -14,14 +21,10 @@ export const metadata: Metadata = {
 
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children,}: Readonly<{children: React.ReactNode;}>) {
   return (
-    <html lang="ru">
-      <body className={inter.className}>{children}</body>
+    <html lang="ru"className={`${rubik.className} ${rubik.variable}`} >
+      <body>{children}</body>
     </html>
   );
 }

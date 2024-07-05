@@ -27,7 +27,7 @@ const ToolTipUI = () => {
     }, []);
 
     return (
-        <section className="rounded-xl border-2 border-black p-4 text-roboto bg-white w-80">
+        <section className="rounded-xl border-2 border-black p-4 font-rubik bg-white w-80">
             <h4 className="font-medium">Найти нас стало проще!</h4>
             <p className="font-light text-base">
                 Мы с гордостью объявляем, что наш главный офис открыт и ждет вас по адресу:
