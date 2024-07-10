@@ -41,7 +41,7 @@ const InputUI = () => {
   };
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center z-50">
       <div className="relative bg-white p-4 rounded-lg shadow-md w-full max-w-md">
         <input
           type="text"

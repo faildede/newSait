@@ -2,6 +2,10 @@ import { title } from 'process';
 import { Item } from '../types/index'
 import { MenuItem } from '../types/index'
 import { url } from 'inspector';
+import { image } from '@nextui-org/theme';
+
+
+
 
 export const firstHeadItem: Item[] = [
     {
@@ -329,3 +333,5 @@ const menuItems: MenuItem[] = [
 
 ]
 export default menuItems;
+
+

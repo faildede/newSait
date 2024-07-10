@@ -28,17 +28,24 @@ const config: Config = {
         },
         grey: {
           1: "#4c4c4c",
+          2: "#F5F5F6",
         },
       },
       animation: {
         marquee: "marquee 10s linear infinite",
+        slide: 'slide 5s linear forwards',
       },
       keyframes: {
         marquee: {
           "0%": { transform: "translateX(100%)" },
           "100%": { transform: "translateX(-100%)" },
         },
+        slide: {
+          '0%': { width: '0%' },
+          '100%': { width: '100%' },
+        },
       },
+
     },
     fontFamily: {
       rubik: ['var(--font-rubik)'],
