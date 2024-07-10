@@ -12,7 +12,7 @@ const InputUI = () => {
   const [searchTerm, setSearchTerm] = useState<string>(searchParams.get('query')?.toString() || '');
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState<string>(searchParams.get('query')?.toString() || '');
 
-  // Используем хук для задержки обновления поискового запроса
+  
   const handleSearch = useDebouncedCallback((term: string) => {
     setDebouncedSearchTerm(term);
     const params = new URLSearchParams(searchParams);

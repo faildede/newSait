@@ -22,6 +22,7 @@ export interface menuItem {
 }
 
 export type SearchProducts = {
+		imageUrl: string | StaticImport;
     id: string;
     name: string;
     image: {
