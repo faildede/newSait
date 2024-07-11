@@ -29,6 +29,7 @@ const config: Config = {
         grey: {
           1: "#4c4c4c",
           2: "#F5F5F6",
+					3: "#828282",
         },
       },
       animation: {

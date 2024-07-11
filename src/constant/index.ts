@@ -7,6 +7,10 @@ import { image } from '@nextui-org/theme';
 
 
 
+
+
+
+
 export const firstHeadItem: Item[] = [
     {
         id: 1,
@@ -331,7 +335,6 @@ const menuItems: MenuItem[] = [
     }
 
 
-]
+];
 export default menuItems;
-
 

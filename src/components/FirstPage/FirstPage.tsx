@@ -1,3 +1,4 @@
+'use client';
 import FirstSection from '../Header/firstSection';
 import SecondSection from '../Header/secondSection';
 import MainBody from '../Body/mainBody';
@@ -24,6 +25,6 @@ const FirstPage = () => {
         </body>
         </>
     );
-}
+};
 
 export default FirstPage;

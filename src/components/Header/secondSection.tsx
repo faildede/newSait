@@ -18,7 +18,7 @@ const SecondSection = () => {
                 <InputUI />
             </section>
             <section className='container mx-auto my-auto'>
-				<p className='font-semibold text-black-1 text-xl'>+7 (707) 700-17-45</p>
+				<p className='font-semibold text-black-1 text-xl'>+7 (727) 252-09-06</p>
 				<div className='flex container   '>
 				<Link href="https://t.me/+77077001745">
 				<FontAwesomeIcon className='text-gray-400 p-2 mx-2 border-0 rounded-full bg-gray-200 hover:text-blue-500 hover:ease-out duration-300' size='lg' icon={faTelegram} />

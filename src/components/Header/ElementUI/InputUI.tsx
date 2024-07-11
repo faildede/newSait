@@ -41,7 +41,7 @@ const InputUI = () => {
   };
 
   return (
-    <div className="flex items-center justify-center z-50">
+    <div className="flex items-center justify-center ">
       <div className="relative bg-white p-4 rounded-lg shadow-md w-full max-w-md">
         <input
           type="text"
@@ -59,9 +59,9 @@ const InputUI = () => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-4.35-4.35m2.21-5.56a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z"></path>
           </svg> 
         </button>
-        <div className="absolute left-0 right-0 mt-1 bg-white shadow-lg border-b-xl max-h-60 overflow-auto">
+        <div className="absolute left-0 right-0 mt-1 bg-white shadow-lg border-b-xl max-h-60 z-50 overflow-auto">
           
-          <Search term={debouncedSearchTerm} />
+          <Search  term={debouncedSearchTerm} />
         </div>
       </div>
     </div>
