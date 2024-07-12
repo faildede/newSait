@@ -6,7 +6,7 @@ import MainBody from '../Body/mainBody';
 const FirstPage = () => {
     return (
         <>
-        <nav>
+      <nav className=" top-0 left-0 right-0 z-50">
             <section className='bg-black-1'>
                 <div className='container mx-auto my-auto'>
                     <FirstSection />
@@ -18,11 +18,11 @@ const FirstPage = () => {
                 </div>
             </section>
         </nav>
-        <body>
+        <main>
             <section>
                 <MainBody />
             </section>
-        </body>
+        </main>
         </>
     );
 };

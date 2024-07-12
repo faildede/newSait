@@ -48,7 +48,7 @@ const Carousel = ({
 
   return (
     <div>
-      <div className="relative h-60 overflow-hidden rounded-md">
+      <div className="relative h-64 overflow-hidden rounded-md">
         <div
           ref={carouselRef}
           style={{
@@ -86,7 +86,7 @@ const Carousel = ({
           <button
             key={i}
             onClick={() => handleDotClick(i)}
-            className={`h-1 mx-1 flex-1 cursor-pointer ${i === currentImg ? 'bg-white' : 'bg-gray-300'} w-1/4`}
+            className={`h-1 mx-1 flex-1 cursor-pointer ${i === currentImg ? 'bg-black-1' : 'bg-gray-300'} w-1/6`}
             aria-label={`Go to slide ${i + 1}`}
           />
         ))}
