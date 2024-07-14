@@ -5,6 +5,7 @@ export interface Item {
 }
 
 export interface MenuItem {
+    tag: any;
 	bodytext: ReactNode;
 	imageUrl: string | StaticImport;
 	title: string;
@@ -55,4 +56,25 @@ export interface StaticCard {
 	imageUrl: string;
 	title: string;
 	bodytext: string;
+}
+
+
+export interface Product {
+    id: string;
+    name: string;
+    price: number;
+    image: Image;
+    category: Category;
+}
+
+export interface Image {
+    sizes: {
+        thumbnail: {
+            url: string;
+        };
+    };
+}
+
+export interface Category {
+    tags: string[];
 }

@@ -2,6 +2,7 @@
 import FirstSection from '../Header/firstSection';
 import SecondSection from '../Header/secondSection';
 import MainBody from '../Body/mainBody';
+import ProductList from './ProductList'
 
 const FirstPage = () => {
     return (
@@ -21,6 +22,9 @@ const FirstPage = () => {
         <main>
             <section>
                 <MainBody />
+            </section>
+            <section>
+                <ProductList />
             </section>
         </main>
         </>
