@@ -1,7 +1,6 @@
-// components/ProductList.tsx
 import { useState, useEffect } from "react";
-import menuItems from "../../constant/index";
-import { MenuItem, Product } from "@/types";
+import ProductCatalog from "../../constant/index";
+import { ProductcatalogProps, Product } from "@/types";
 import React from "react";
 
 const ProductList: React.FC = () => {
@@ -12,7 +11,7 @@ const ProductList: React.FC = () => {
     const fetchProducts = async (tag: string) => {
         setLoading(true);
         try {
-            const response = await fetch(`/api/products/${tag}`);
+            const response = await fetch(`localhost:4000/api/products/${tag}`);
             if (!response.ok) {
                 throw new Error('Failed to fetch products');
             }
@@ -33,24 +32,13 @@ const ProductList: React.FC = () => {
         setSelectedTag(tag);
     };
 
-    const renderMenu = (items: MenuItem[]) => (
+    const renderMenu = (items: ProductcatalogProps[]) => (
         <ul>
             {items.map(item => (
-                <li key={item.title}>
-                    {item.tag && (
-                        <a href="#" onClick={() => handleTagClick(item.tag!)}>
-                            {item.title}
-                        </a>
-                    )}
-                    {item.children && (
-                        <ul>
-                            {item.children.map(child => (
-                                <li key={child.title}>
-                                    {child.title}
-                                </li>
-                            ))}
-                        </ul>
-                    )}
+                <li key={item.tag}>
+                    <a href="#" onClick={() => handleTagClick(item.tag)}>
+                        {item.name}
+                    </a>
                 </li>
             ))}
         </ul>
@@ -58,8 +46,7 @@ const ProductList: React.FC = () => {
 
     return (
         <div>
-            <nav>{renderMenu(menuItems)}</nav>
-
+            <nav>{renderMenu(ProductCatalog)}</nav>
             <div>
                 {loading ? (
                     <p>Loading...</p>

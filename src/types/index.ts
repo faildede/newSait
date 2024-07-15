@@ -78,3 +78,10 @@ export interface Image {
 export interface Category {
     tags: string[];
 }
+
+
+export interface ProductcatalogProps {
+	name: string;
+	ImageUrl: string;
+	tag: string;
+}

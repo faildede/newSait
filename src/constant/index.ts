@@ -1,12 +1,75 @@
 import { title } from 'process';
 import { Item } from '../types/index'
-import { MenuItem } from '../types/index'
+import { MenuItem } from '../types/index';
 import { url } from 'inspector';
 import { image } from '@nextui-org/theme';
+import { ProductcatalogProps } from '../types/index';
+ 
 
 
 
-
+export const ProductCatalog: ProductcatalogProps[] = [
+    {
+        tag: 'welding equipment',
+        name: 'Сварочные аппараты',
+        ImageUrl: 'https://res.cloudinary.com/dt4qeehms/image/upload/v1634376697/',
+    },
+    {   
+        tag: 'cutting-equipment',
+        name: 'Оборудование для резки',
+        ImageUrl: ''
+    },
+    {   
+        tag: 'flowmeters-reducers',
+        name: 'Расходомеры, редукторы',
+        ImageUrl: ''
+    },
+    {   
+        tag: 'burners-spare-parts',
+        name: 'Горелки, Запасные части',
+        ImageUrl: ''
+    },
+    {   
+        tag: 'welding-materials',
+        name: 'Сварочные материалы',
+        ImageUrl: ''
+    },
+    {   
+        tag: 'contact-welding-machines',
+        name: 'Машины контактной сварки',
+        ImageUrl: ''
+    },
+    {   
+        tag: 'equipment-for-flux-welding',
+        name: 'Оборудование для сварки под флюсом',
+        ImageUrl: ''
+    },
+    {   
+        tag: 'metal-bending-machines',
+        name: 'Металлогибочные станки',
+        ImageUrl: ''
+    },
+    {   
+        tag: 'automation-of-welding-processes',
+        name: 'Автоматизация сварочных процессов',
+        ImageUrl: ''
+    },
+    {   
+        tag: 'welding-accessories-protection',
+        name: 'Сварочные аксессуары, cредства защиты',
+        ImageUrl: ''
+    },
+    {   
+        tag: 'laser',
+        name: 'Лазер',
+        ImageUrl: '',
+    },
+    {   
+        tag: 'spare-parts',
+        name: 'Запасные части',
+        ImageUrl: '',
+    },
+];
 
 
 
