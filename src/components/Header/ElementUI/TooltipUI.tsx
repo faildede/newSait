@@ -9,7 +9,7 @@ const MapWidget = () => {
             </p>
             <div style={{ width: '100%', overflow: 'hidden' }}>
         
-				<iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Afa50d764ec9d8d620f0ddddb3c864d700243be4479360c52da51ce5379ebaa24&amp;source=constructor" style={{ width: '100%', height: '300px', border: '0' }} frameborder="0"></iframe>
+				<iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Afa50d764ec9d8d620f0ddddb3c864d700243be4479360c52da51ce5379ebaa24&amp;source=constructor" style={{ width: '100%', height: '300px', border: '0' }} frameBorder="0"></iframe>
             </div>
             <p className="text-xs text-grey-1 font-light">
                 Приходите познакомиться с нашими специалистами, получить консультации и воспользоваться нашими услугами. Ждем Вас в удобном месте с комфортными условиями!

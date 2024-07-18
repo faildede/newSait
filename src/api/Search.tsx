@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { useRouter, usePathname } from 'next/navigation';
+import { Spinner } from '@nextui-org/react';
+import LoadingDots from '@/components/Body/BodyUi/loadingDots';
 
 const Search = ({ term }) => {
   const [products, setProducts] = useState([]);
@@ -32,7 +34,7 @@ const Search = ({ term }) => {
         console.error('Error fetching products:', error);
         setProducts([]);
       } finally {
-        setLoading(false);
+        setLoading(true); //false
       }
     };
 
@@ -64,8 +66,10 @@ const Search = ({ term }) => {
   return (
     <div ref={dropdownRef}>
       {loading ? (
-        <div className="flex items-center justify-center min-h-screen">
-          <div className="spinner border-4 border-blue-500 rounded-full h-16 w-16"></div> //TODO: Spinner to be added
+        <div className="min-h-screen bg-white  items-center p-12">
+          <Spinner  color="danger" labelColor="danger" className='text-center'/> 
+          
+          <p className="text-center font-semibold text-grey-3 text-lg ">Подыскиваем нужные вам продукты<LoadingDots /> </p>
         </div>
       ) : products.length > 0 && isDropdownVisible ? (
         <div className="p-2">
