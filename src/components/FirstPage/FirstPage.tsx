@@ -3,6 +3,7 @@ import FirstSection from '../Header/firstSection';
 import SecondSection from '../Header/secondSection';
 import MainBody from '../Body/mainBody';
 import ProductList from './ProductList';
+import AboutFirstBlock from '../Body/AboutFirstBlock';
 
 const FirstPage = () => {
   return (
@@ -25,6 +26,9 @@ const FirstPage = () => {
         </section>
         <section className='mt-12'>
           <ProductList />
+        </section>
+        <section className='mt-12'>
+          <AboutFirstBlock />
         </section>
       </main>
     </>

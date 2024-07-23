@@ -12,8 +12,8 @@ const FirstSection = () => {
     <nav className="text-white flex font-rubik justify-between my-auto py-2 text-sm font-normal">
       <section className='flex'>
         <FontAwesomeIcon className='py-1 px-2 mx-2 rounded-full bg-grey-1' icon={faLocationDot} />
-        <Tooltip showArrow={true} content={<ToolTipUI />}>
-          <Button>Алмата</Button>
+        <Tooltip showArrow={true} className='cursor-pointer' content={<ToolTipUI />}>
+            Алмата
         </Tooltip>
       </section>
       <div className="relative overflow-hidden  flex">

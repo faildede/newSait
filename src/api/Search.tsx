@@ -34,7 +34,7 @@ const Search = ({ term }) => {
         console.error('Error fetching products:', error);
         setProducts([]);
       } finally {
-        setLoading(true); //false
+        setLoading(false); //false
       }
     };
 

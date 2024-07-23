@@ -18,7 +18,8 @@ const config: Config = {
       },
       colors: {
         black: {
-          1: "rgba(57, 57, 57, 1)"
+          1: "rgba(57, 57, 57, 1)", 
+          2: '#393939'
         },
         red: {
           1: "rgba(227, 18, 53, 1)",
@@ -30,6 +31,7 @@ const config: Config = {
           1: "#4c4c4c",
           2: "#F5F5F6",
           3: "#828282",
+          4: '#131313'
         },
       },
       animation: {

@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 
 const MapWidget = () => {
     return (
-        <section className="rounded-xl border-2 border-black p-4 font-rubik bg-white w-80 overflow-hidden">
+        <section className="rounded-xl p-4 bg-white w-80 overflow-hidden">
             <h4 className="font-medium">Найти нас стало проще!</h4>
             <p className="font-light text-base">
                 Мы с гордостью объявляем, что наш главный офис открыт и ждет вас по адресу:
