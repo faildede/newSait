@@ -4,6 +4,9 @@ import SecondSection from '../Header/secondSection';
 import MainBody from '../Body/mainBody';
 import ProductList from './ProductList';
 import AboutFirstBlock from '../Body/AboutFirstBlock';
+import MapBlock from '../Body/BodyUi/MapBlock';
+import SomeInfo from '../Body/BodyUi/SomeInfo';
+import ViewedProducts from '../Body/BodyUi/ViewedProducts';
 
 const FirstPage = () => {
   return (
@@ -29,6 +32,15 @@ const FirstPage = () => {
         </section>
         <section className='mt-12'>
           <AboutFirstBlock />
+        </section>
+        <section className='mt-24 bg-grey-2 p-24'>
+          <MapBlock />
+        </section>
+        <section className='mt-24  p-24'>
+          <SomeInfo />
+        </section>
+        <section className='mt-24  p-24'>
+          <ViewedProducts />
         </section>
       </main>
     </>

@@ -1,4 +1,3 @@
-// pages/products/[id].tsx
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
@@ -35,15 +34,14 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { id } = context.params!;
   
-
+ 
   const response = await fetch(`http://localhost:4000/api/products/${id}`);
-  const product: Product = await response.json();
-
-  if (!product) {
+  if (!response.ok) {
     return {
       notFound: true,
     };
   }
+  const product: Product = await response.json();
 
   return {
     props: {

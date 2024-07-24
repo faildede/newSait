@@ -78,7 +78,7 @@ export const firstHeadItem: Item[] = [
     {
         id: 1,
         name: 'О компании',
-        route: '/about',
+        route: '/AboutCompany',
     },
     {
         id: 2,
