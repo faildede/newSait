@@ -7,12 +7,18 @@ import PaginationComponent from '../Body/BodyUi/pagination';
 import LoadingDots from '../Body/BodyUi/loadingDots';
 import { useCart } from '../Body/CartContext';
 import { useRecentlyViewed } from '../../hooks/useRecentlyViewed';
+import { useRouter } from "next/router";
 
 interface Product {
   id: string;
   name: string;
   price: number;
   imageUrl?: string;
+  onSale?: {
+    isOnSale: boolean;
+    salePrice?: number;
+    saleDescription?: string;
+  };
 }
 
 interface ProductcatalogProps {
@@ -50,6 +56,7 @@ const ProductList: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const { addToCart } = useCart();
   const { addProductToRecentlyViewed } = useRecentlyViewed();
+  // const router = useRouter();
 
   const handleAddToCart = (product: Product) => {
     addToCart(product);
@@ -88,6 +95,10 @@ const ProductList: React.FC = () => {
     setSelectedTag(tag);
     setCurrentPage(1);
   };
+
+  // const handleRoute = (id: string) => { 
+  //   router.push(`/products/${id}`);
+  // };
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -154,7 +165,19 @@ const ProductList: React.FC = () => {
                         )}
                       </div>
                       <h4 className="text-lg text-black-1 font-semibold mb-2 mt-4">{product.name}</h4>
-                      <p className="text-grey-3 text-xl">{product.price} KZT</p>
+                      <p className="text-grey-3 text-xl">
+                        {product.onSale?.isOnSale ? (
+                          <>
+                            <span className="line-through">{product.price} KZT</span>
+                            <span className="text-red-500 ml-2">{product.onSale.salePrice} KZT</span>
+                          </>
+                        ) : (
+                          <>{product.price} KZT</>
+                        )}
+                      </p>
+                      {product.onSale?.isOnSale && (
+                        <p className="text-sm text-red-500 mt-2">{product.onSale.saleDescription}</p>
+                      )}
                       <div className='container mx-auto flex justify-between pt-4 justify-items-center mt-12 '>
                         <div className='p-2 rounded-2xl bg-grey-2'>
                           <svg xmlns="http://www.w3.org/2000/svg" onClick={() => handleAddToCart(product)} fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="text-gray-400 size-12 p-2 hover:text-red-1 ease-out duration-300">
