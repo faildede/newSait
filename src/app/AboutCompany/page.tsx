@@ -1,5 +1,6 @@
 import FirstSection from "@/components/Header/firstSection"
 import SecondSection from "@/components/Header/secondSection"
+import Footer from "@/components/Body/Footer"
 
 const AboutCompany = () => {
     return (
@@ -16,6 +17,12 @@ const AboutCompany = () => {
           </div>
         </section>
       </nav>
+      <main className="h-screen">
+
+      </main>
+      <footer className="mt-24 p-24 bg-black-2">
+        <Footer />
+      </footer>
         </>
     )
 }

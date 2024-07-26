@@ -95,6 +95,11 @@ export const firstHeadItem: Item[] = [
         id: 4,
         name: 'Контакты',
         route: '/contacts',
+    },
+    {
+        id: 5,
+        name: 'Новости',
+        route: '/news',
     }
 ];
 

@@ -3,6 +3,7 @@ import React from 'react';
 import { useCart } from '../../components/Body/CartContext';
 import FirstSection from '@/components/Header/firstSection';
 import SecondSection from '@/components/Header/secondSection';
+import Footer from '@/components/Body/Footer';
 
 const CartPage = () => {
   const { cart, removeFromCart, clearCart, increaseQuantity, decreaseQuantity, getTotalPrice } = useCart();
@@ -115,6 +116,9 @@ const CartPage = () => {
           )}
         </div>
       </div>
+      <footer className=" p-24 bg-black-2">
+        <Footer />
+      </footer>
     </section>
   );
 };

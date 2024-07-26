@@ -6,7 +6,9 @@ import ProductList from './ProductList';
 import AboutFirstBlock from '../Body/AboutFirstBlock';
 import MapBlock from '../Body/BodyUi/MapBlock';
 import SomeInfo from '../Body/BodyUi/SomeInfo';
-import ViewedProducts from '../Body/BodyUi/ViewedProducts';
+import SaleCarousel from '../Body/BodyUi/SaleCarousel';
+import Footer from '../Body/Footer';
+
 
 const FirstPage = () => {
   return (
@@ -40,9 +42,12 @@ const FirstPage = () => {
           <SomeInfo />
         </section>
         <section className='mt-24  p-24'>
-          <ViewedProducts />
+          <SaleCarousel />
         </section>
       </main>
+      <footer className='mt-24 p-24 bg-black-2'>
+        <Footer />
+      </footer>
     </>
   );
 };
