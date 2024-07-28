@@ -52,7 +52,7 @@ const InputUI = () => {
   }, []);
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center w-5/6">
       <div ref={inputRef} className="relative bg-white p-4 rounded-lg shadow-md w-full max-w-md">
         <input
           type="text"

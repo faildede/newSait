@@ -83,7 +83,7 @@ export const firstHeadItem: Item[] = [
     {
         id: 2,
         name: 'Продукция',
-        route: '/products',
+        route: '/catalog',
 
     },
     {
@@ -93,8 +93,8 @@ export const firstHeadItem: Item[] = [
     },
     {
         id: 4,
-        name: 'Контакты',
-        route: '/contacts',
+        name: 'Доставка',
+        route: '/delivery',
     },
     {
         id: 5,
@@ -114,7 +114,7 @@ const menuItems: MenuItem[] = [
     {
         title: 'Сварочные аппараты',
         route: '/welding-machines',
-        tag: 'welding-machines',
+        tag: 'welding equipment',
         children: [
             {
                 title: 'Универсальные сварочные аппараты',
@@ -146,7 +146,7 @@ const menuItems: MenuItem[] = [
     {
         title: 'Оборудование для резки',
         route: '/cutting-equipment',
-        tag: 'cutting-equipment',
+        tag: 'Cutting equipment',
         children: [
             {
                 title: 'Резаки Harris',
@@ -173,7 +173,7 @@ const menuItems: MenuItem[] = [
     {
         title: 'Расходомеры, редукторы',
         route: '/flowmeters-reducers',
-        tag: 'flowmeters-reducers',
+        tag: 'Flow meters, reducers',
         children: [
             {
                 title: 'Редукторы промышленные',
@@ -190,7 +190,7 @@ const menuItems: MenuItem[] = [
     {
         title: 'Горелки, Запасные части',
         route: '/burners-spare-parts',
-        tag: 'burners-spare-parts',
+        tag: 'Burners. Spare parts',
         children: [
             {
                 title: 'Сварочные горелки Mig/Mag',
@@ -222,7 +222,7 @@ const menuItems: MenuItem[] = [
     {
         title: 'Сварочные материалы',
         route: '/welding-materials',
-        tag: 'welding-materials',
+        tag: 'Welding materials',
         children: [
             {
                 title: 'Сварочные материалы для трубопровода',
@@ -249,17 +249,17 @@ const menuItems: MenuItem[] = [
     {
         title: 'Машины контактной сварки',
         route: '/contact-welding-machines',
-        tag: 'contact-welding-machines'
+        tag: 'Resistance welding machines'
     },
     {
         title: 'Оборудование для сварки под флюсом',
         route: '/equipment-for-flux-welding',
-        tag: 'equipment-for-flux-welding'
+        tag: 'Submerged Welding Equipment'
     },
     {
         title: 'Металлогибочные станки',
         route: '/metal-bending-machines',
-        tag: 'metal-bending-machines',
+        tag: 'Metal bending machines',
         children: [
             {
                 title: 'Вальцы',
@@ -286,7 +286,7 @@ const menuItems: MenuItem[] = [
     {
         title: 'Автоматизация сварочных процессов',
         route: '/automation-of-welding-processes',
-        tag: 'automation-of-welding-processes',
+        tag: 'automation of welding processes',
         children: [
             {
                 title: 'Сварочные колонны',
@@ -323,7 +323,7 @@ const menuItems: MenuItem[] = [
     {
         title: 'Сварочные аксессуары, cредства защиты',
         route: '/welding-accessories-protection',
-        tag: 'welding-accessories-protection',
+        tag: 'Welding accessories Protective equipment',
         children: [
             {
                 title: 'Электрододержатели',
@@ -375,7 +375,7 @@ const menuItems: MenuItem[] = [
     {
         title: 'Лазер',
         route: '/laser',
-        tag: 'laser',
+        tag: 'Laser',
         children: [
             {
                 title: 'Сварка лазером',
@@ -392,7 +392,7 @@ const menuItems: MenuItem[] = [
     {
         title: 'Запасные части',
         route: '/spare-parts',
-        tag: 'spare-parts',
+        tag: 'Spare parts',
         children: [
             {
                 title: 'KOHLER',

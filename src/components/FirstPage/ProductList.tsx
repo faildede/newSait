@@ -168,11 +168,11 @@ const ProductList: React.FC = () => {
                       <p className="text-grey-3 text-xl">
                         {product.onSale?.isOnSale ? (
                           <>
-                            <span className="line-through">{product.price} KZT</span>
-                            <span className="text-red-500 ml-2">{product.onSale.salePrice} KZT</span>
+                            <span className="line-through">{product.price} ₸</span>
+                            <span className="text-red-500 ml-2">{product.onSale.salePrice} ₸</span>
                           </>
                         ) : (
-                          <>{product.price} KZT</>
+                          <>{product.price} ₸</>
                         )}
                       </p>
                       {product.onSale?.isOnSale && (

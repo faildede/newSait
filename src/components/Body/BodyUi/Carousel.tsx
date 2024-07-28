@@ -56,16 +56,17 @@ const Carousel = ({
           }}
           className="absolute flex h-full w-full transition-all duration-300"
         >
-          {data.map((v, i) => (
-            <div key={i} className="relative h-full w-full shrink-0">
-              <Image
-                className="pointer-events-none"
-                alt={`carousel-image-${i}`}
-                fill
-                src={v.image || 'https://random.imagecdn.app/500/500'}
-              />
-            </div>
-          ))}
+  {data.map((v, i) => (
+  <div key={i} className="relative h-full w-full shrink-0 bg-cover bg-center">
+    <Image
+      className="pointer-events-none custom-image object-cover"
+      alt={`carousel-image-${i}`}
+      fill
+      src={v.image || 'https://random.imagecdn.app/500/500'}
+    />
+  </div>
+))}
+
         </div>
         <button
           onClick={handlePrevClick}

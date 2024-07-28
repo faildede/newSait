@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface logocompany  {
     imageUrl: string;
@@ -67,9 +68,11 @@ const AboutFirstBlock = () => {
                             </div>
                         </div>                      
                     </div>
+                    <Link href="/catalog">
                         <button className='rounded-lg mt-12 text-2xl text-white bg-red-1 px-6 py-4'>
                             Перейти в каталог
                         </button>
+                    </Link>
                 </section>
 
                 <section>

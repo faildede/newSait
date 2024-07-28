@@ -16,20 +16,19 @@ const DropDownUI = (props: Props) => {
         setIsOpen(!isOpen);
     };
 
-    const renderMenuItems = (items: MenuItem[]) => { //TODO: Fix do another way to fetch children
+    const renderMenuItems = (items: MenuItem[]) => { 
         return items.map(item => (
             <div key={item.route} className="mb-2">
                 <Link
                     className="font-semibold px-4 py-1 text-lg block group font-rubik text-black hover:border-b-red-1 transition-colors duration-300"
-                    href={item.route || ''}
+                    href={`/catalog${item.route}`}
                 >
                     {item.title}
                     <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-1 group-hover:w-full group-hover:transition-all"></span>
                 </Link>
                 {item.children && (
                     <div className="ml-2 text-xs leading-loose">
-                      <Link className="text-xs">{renderMenuItems(item.children)}</Link>
-                        
+                      <Link  href={`/catalog${item.route}`} className="text-xs">{renderMenuItems(item.children)}</Link>
                     </div>
                 )}
             </div>
@@ -62,7 +61,7 @@ const DropDownUI = (props: Props) => {
                         style={{ zIndex: 10 }}
                     >
                         <div className="absolute top-[-10px] left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-b-8 border-b-white"></div>
-                        <div className="p-4 grid grid-cols-4 gap-2">
+                        <div className="p-4 ">
                             {renderMenuItems(menuItems)}
                         </div>
                     </div>

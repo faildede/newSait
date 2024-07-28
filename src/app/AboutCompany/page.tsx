@@ -1,6 +1,7 @@
 import FirstSection from "@/components/Header/firstSection"
 import SecondSection from "@/components/Header/secondSection"
 import Footer from "@/components/Body/Footer"
+import FirstAbout from "@/components/AboutBody/FirstAbout"
 
 const AboutCompany = () => {
     return (
@@ -17,8 +18,11 @@ const AboutCompany = () => {
           </div>
         </section>
       </nav>
-      <main className="h-screen">
-
+      <main className=" container mx-auto mt-24">
+        <div>
+            <h1 className="text-3xl text-grey-1 font-bold mt-2">О нашей компании</h1>
+            <FirstAbout />
+        </div>
       </main>
       <footer className="mt-24 p-24 bg-black-2">
         <Footer />
