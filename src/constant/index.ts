@@ -113,7 +113,7 @@ export interface MenuItem {
 const menuItems: MenuItem[] = [
     {
         title: 'Сварочные аппараты',
-        route: '/welding-machines',
+        route: '/welding equipment',
         tag: 'welding equipment',
         children: [
             {
@@ -145,7 +145,7 @@ const menuItems: MenuItem[] = [
     },
     {
         title: 'Оборудование для резки',
-        route: '/cutting-equipment',
+        route: '/Cutting equipment',
         tag: 'Cutting equipment',
         children: [
             {
@@ -172,7 +172,7 @@ const menuItems: MenuItem[] = [
     },
     {
         title: 'Расходомеры, редукторы',
-        route: '/flowmeters-reducers',
+        route: '/Flow meters, reducers',
         tag: 'Flow meters, reducers',
         children: [
             {
@@ -189,7 +189,7 @@ const menuItems: MenuItem[] = [
     },
     {
         title: 'Горелки, Запасные части',
-        route: '/burners-spare-parts',
+        route: '/Burners. Spare parts',
         tag: 'Burners. Spare parts',
         children: [
             {
@@ -221,7 +221,7 @@ const menuItems: MenuItem[] = [
     },
     {
         title: 'Сварочные материалы',
-        route: '/welding-materials',
+        route: '/Welding materials',
         tag: 'Welding materials',
         children: [
             {
@@ -248,17 +248,17 @@ const menuItems: MenuItem[] = [
     },
     {
         title: 'Машины контактной сварки',
-        route: '/contact-welding-machines',
+        route: '/Resistance welding machines',
         tag: 'Resistance welding machines'
     },
     {
         title: 'Оборудование для сварки под флюсом',
-        route: '/equipment-for-flux-welding',
+        route: '/Submerged Welding Equipment',
         tag: 'Submerged Welding Equipment'
     },
     {
         title: 'Металлогибочные станки',
-        route: '/metal-bending-machines',
+        route: '/Metal bending machines',
         tag: 'Metal bending machines',
         children: [
             {
@@ -285,7 +285,7 @@ const menuItems: MenuItem[] = [
     },
     {
         title: 'Автоматизация сварочных процессов',
-        route: '/automation-of-welding-processes',
+        route: '/automation of welding processes',
         tag: 'automation of welding processes',
         children: [
             {
@@ -322,7 +322,7 @@ const menuItems: MenuItem[] = [
     },
     {
         title: 'Сварочные аксессуары, cредства защиты',
-        route: '/welding-accessories-protection',
+        route: '/Welding accessories Protective equipment',
         tag: 'Welding accessories Protective equipment',
         children: [
             {
@@ -374,7 +374,7 @@ const menuItems: MenuItem[] = [
     },
     {
         title: 'Лазер',
-        route: '/laser',
+        route: '/Laser',
         tag: 'Laser',
         children: [
             {
@@ -391,7 +391,7 @@ const menuItems: MenuItem[] = [
     },
     {
         title: 'Запасные части',
-        route: '/spare-parts',
+        route: '/Spare parts',
         tag: 'Spare parts',
         children: [
             {

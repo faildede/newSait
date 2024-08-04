@@ -39,7 +39,7 @@ async function fetchAllProducts(): Promise<Product[]> {
     id: product.id,
     name: product.name,
     price: product.price,
-    imageUrl: product.image ? `http://localhost:4000/media/${product.image}` : '',
+    imageUrl: product.imageUrl,
   }));
 }
 
@@ -107,7 +107,7 @@ const AllProductsPage: React.FC = () => {
                     <div className="relative w-full bg-white h-72 mb-4 rounded">
                       {product.imageUrl ? (
                         <img
-                          src={product.imageUrl}
+                          src={`http://localhost:4000${product.imageUrl}`}
                           alt={product.name}
                           className="w-full h-full object-cover rounded"
                         />

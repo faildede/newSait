@@ -11,12 +11,14 @@ import menuItems from "../../../constant/index";
 const DropDownUI = (props: Props) => {
     const { item } = props;
     const [isOpen, setIsOpen] = useState<boolean>(false);
+    console.log(props)
+    console.log(item);
 
     const toggle = () => {
         setIsOpen(!isOpen);
     };
 
-    const renderMenuItems = (items: MenuItem[]) => { 
+    const renderMenuItems = (items: menuItem[]) => { 
         return items.map(item => (
             <div key={item.route} className="mb-2">
                 <Link
@@ -28,7 +30,7 @@ const DropDownUI = (props: Props) => {
                 </Link>
                 {item.children && (
                     <div className="ml-2 text-xs leading-loose">
-                      <Link  href={`/catalog${item.route}`} className="text-xs">{renderMenuItems(item.children)}</Link>
+                      <Link  href={`/catalog/${item.route}`} className="text-xs">{renderMenuItems(item.children)}</Link>
                     </div>
                 )}
             </div>
