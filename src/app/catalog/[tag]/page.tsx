@@ -39,7 +39,7 @@ async function fetchProducts(tag: string, filters: any): Promise<Product[]> {
     delete params.priceRange;
   }
 
-  if (params.onSale === undefined) {
+  if (params.onSale === false) {
     delete params.onSale;
   }
 
@@ -88,7 +88,7 @@ const CatalogPage: React.FC<CatalogPageProps> = ({ params }) => {
   }, [params.tag, JSON.stringify(filters)]);
 
   const handleFilterChange = (newFilters: any) => {
-    setFilters(newFilters); // Обновление фильтров
+    setFilters(newFilters);
   };
 
   const handleAddToCart = (product: Product) => {

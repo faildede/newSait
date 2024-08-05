@@ -14,16 +14,15 @@ const ManufacturerFilter = ({ onFilterChange }) => {
     fetchManufacturers();
   }, []);
 
-  const handleChange = (e) => {
-    setSelectedManufacturer(e.target.value);
-    onFilterChange({ manufacturer: e.target.value });
-  };
+  useEffect(() => {
+    onFilterChange(selectedManufacturer);
+  }, [selectedManufacturer]);
 
   return (
     <div>
       <select
         value={selectedManufacturer}
-        onChange={handleChange}
+        onChange={(e) => setSelectedManufacturer(e.target.value)}
         style={{ margin: '10px 0', padding: '5px' }}
       >
         <option value="">Select Manufacturer</option>
