@@ -8,7 +8,7 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     // Use glob pattern to include all necessary files
-    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -59,7 +59,9 @@ const config: Config = {
       rubik: ['var(--font-rubik)'],
     },
   },
-  plugins: [nextui()],
+  plugins: [
+    nextui(),
+  ],
 };
 
 export default config;

@@ -1,34 +1,46 @@
 import React, { useState, useEffect } from 'react';
-import PriceFilter from './PriceFilter';
+import PriceSlider from './PriceSlider';
 import SaleFilter from './SaleFilter';
 import ManufacturerFilter from './ManufacturerFilter';
 
-interface FilterProps {
-  onFilterChange: (filters: {
-    priceRange: { min: number; max: number };
-    onSale?: boolean;
-    manufacturer: string;
-  }) => void;
+interface FilterComponentProps {
+  onFilterChange: (filters: any) => void;
+  minPrice: number;
+  maxPrice: number;
 }
 
-const FilterComponent: React.FC<FilterProps> = ({ onFilterChange }) => {
-  const [priceRange, setPriceRange] = useState<{ min: number; max: number }>({ min: 0, max: 100000 });
-  const [onSale, setOnSale] = useState<boolean>(false);
-  const [manufacturer, setManufacturer] = useState<string>('');
+const FilterComponent: React.FC<FilterComponentProps> = ({ onFilterChange, minPrice, maxPrice }) => {
+  const [onSale, setOnSale] = useState(false);
+  const [manufacturer, setManufacturer] = useState('');
+  const [currentMinPrice, setCurrentMinPrice] = useState(minPrice);
+  const [currentMaxPrice, setCurrentMaxPrice] = useState(maxPrice);
 
   useEffect(() => {
-    const newFilters: any = { priceRange, manufacturer };
-    if (onSale) {
-      newFilters.onSale = onSale;
-    }
+    const newFilters = {
+      onSale,
+      manufacturer,
+      minPrice: currentMinPrice,
+      maxPrice: currentMaxPrice,
+  };
     onFilterChange(newFilters);
-  }, [priceRange, onSale, manufacturer]);
+  }, [onSale, manufacturer, currentMinPrice, currentMaxPrice]);
+
+  const handlePriceChange = (min: number, max: number) => {
+    setCurrentMinPrice(min);
+    setCurrentMaxPrice(max);
+  };
 
   return (
-    <div className="container mx-auto flex justify-between my-12">
-      <PriceFilter priceRange={priceRange} setPriceRange={setPriceRange} />
+    <div className="container mx-auto flex flex-col space-y-4 my-12">
       <SaleFilter onSale={onSale} setOnSale={setOnSale} />
       <ManufacturerFilter onFilterChange={setManufacturer} />
+      <PriceSlider
+          minPrice={minPrice}
+          maxPrice={maxPrice}
+          initialMinPrice={currentMinPrice}
+          initialMaxPrice={currentMaxPrice}
+          onPriceChange={handlePriceChange}
+        />
     </div>
   );
 };

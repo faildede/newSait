@@ -8,6 +8,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/parallax';
 
+
 config.autoAddCss = false;
 
 const rubik = Rubik({
@@ -28,6 +29,7 @@ export default function ServerLayout({ children }: { children: React.ReactNode }
     <html lang="ru" className={`${rubik.className} ${rubik.variable}`}>
       <body>
         {children}
+
       </body>
     </html>
   );

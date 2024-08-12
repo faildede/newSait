@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {Switch} from "@nextui-org/switch";
 interface SaleFilterProps {
   onSale: boolean;
   setOnSale: (onSale: boolean) => void;
@@ -12,14 +12,12 @@ const SaleFilter: React.FC<SaleFilterProps> = ({ onSale, setOnSale }) => {
 
   return (
     <div className="filter-section">
-      <label>
-        <input
-          type="checkbox"
-          checked={onSale}
-          onChange={handleChange}
-        />
-        На распродаже
-      </label>
+      <div className="relative inline-block">
+      <Switch    checked={onSale}
+          onChange={handleChange} color="danger">По распродаже</Switch>
+    
+        
+      </div>
     </div>
   );
 };

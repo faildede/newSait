@@ -1,4 +1,5 @@
-'use client'
+'use client';
+
 import React, { useState, useEffect, CSSProperties } from 'react';
 import CatalogLayout from '@/components/CatalogPage/CatalogLayout';
 import FirstSection from '@/components/Header/firstSection';
@@ -9,6 +10,7 @@ import Link from 'next/link';
 import { useCart } from '@/components/Body/CartContext';
 import Footer from '@/components/Body/Footer';
 import FilterComponent from '@/components/Body/BodyUi/filters/FilterComponent';
+import PaginationComponent from '@/components/Body/BodyUi/pagination';
 
 interface Product {
   id: string;
@@ -29,15 +31,9 @@ const override: CSSProperties = {
   borderColor: "red",
 };
 
-async function fetchProducts(tag: string, filters: any): Promise<Product[]> {
+const fetchProducts = async (tag, filters, page) => {
   let url = `http://localhost:4000/api/products/tag/${tag}`;
-  const params: Record<string, any> = { ...filters };
-
-  if (params.priceRange) {
-    params.minPrice = params.priceRange.min;
-    params.maxPrice = params.priceRange.max;
-    delete params.priceRange;
-  }
+  const params = { ...filters, page };
 
   if (params.onSale === false) {
     delete params.onSale;
@@ -48,36 +44,46 @@ async function fetchProducts(tag: string, filters: any): Promise<Product[]> {
     url += `?${queryString}`;
   }
 
-  console.log("Request URL:", url);
 
   const res = await fetch(url);
   if (!res.ok) {
     throw new Error('Failed to fetch products');
   }
+
   const data = await res.json();
-  console.log("Fetched data:", data);
-  return data.docs.map((product: any) => ({
+
+  const products = data.docs.map(product => ({
     id: product.id,
     name: product.name,
-    price: product.price,
+    price: product.finalPrice,  
     imageUrl: product.imageUrl,
     manufacturer: product.manufacturer ? product.manufacturer[0] : undefined,
     onSale: product.onSale,
   }));
+
+  return { products, totalPages: data.totalPages, minPrice: data.minPrice, maxPrice: data.maxPrice };
 }
 
-const CatalogPage: React.FC<CatalogPageProps> = ({ params }) => {
-  const [products, setProducts] = useState<Product[]>([]);
+
+const CatalogPage = ({ params }) => {
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const { addToCart } = useCart();
-  const [filters, setFilters] = useState<any>({});
+  const [filters, setFilters] = useState({});
+  const [totalPages, setTotalPages] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(10000);
 
   useEffect(() => {
     const loadProducts = async () => {
       setLoading(true);
       try {
-        const fetchedProducts = await fetchProducts(params.tag, filters);
-        setProducts(fetchedProducts);
+        const { products, totalPages, minPrice, maxPrice } = await fetchProducts(params.tag, filters, currentPage);
+        setProducts(products);
+        setTotalPages(totalPages);
+        setMinPrice(minPrice);
+        setMaxPrice(maxPrice);
       } catch (error) {
         console.error(error);
       } finally {
@@ -85,14 +91,19 @@ const CatalogPage: React.FC<CatalogPageProps> = ({ params }) => {
       }
     };
     loadProducts();
-  }, [params.tag, JSON.stringify(filters)]);
+  }, [params.tag, JSON.stringify(filters), currentPage]);
 
-  const handleFilterChange = (newFilters: any) => {
+  const handleFilterChange = (newFilters) => {
     setFilters(newFilters);
+    setCurrentPage(1);
   };
 
-  const handleAddToCart = (product: Product) => {
+  const handleAddToCart = (product) => {
     addToCart(product);
+  };
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
   };
 
   return (
@@ -112,8 +123,12 @@ const CatalogPage: React.FC<CatalogPageProps> = ({ params }) => {
       <div className='container mx-auto'>
         <CatalogLayout>
           <div className='flex justify-between '>
-            <FilterComponent onFilterChange={handleFilterChange} />
-          </div> 
+            <FilterComponent
+              onFilterChange={handleFilterChange}
+              minPrice={minPrice}
+              maxPrice={maxPrice}
+            />
+          </div>
           {loading ? (
             <div className='h-screen container mx-auto my-auto mt-96'>
               <ClipLoader
@@ -125,56 +140,63 @@ const CatalogPage: React.FC<CatalogPageProps> = ({ params }) => {
                 data-testid="loader"
               />
               <p className="text-center font-semibold text-grey-1 text-2xl mt-12">
-                Подыскиваем нужные вам продукты<LoadingDots /> 
+                Подыскиваем нужные вам продукты<LoadingDots />
               </p>
             </div>
           ) : (
-            <ul className="grid grid-cols-3 col-span-6 gap-4">
-              {products.map((product) => (
-                <Link key={product.id} href={`/products/${product.id}`}>
-                  <div 
-                    className="border rounded-lg p-4 shadow-xl hover:transition-all cursor-pointer"
-                  >
-                    <div className="relative w-full bg-white h-72 mb-4 rounded">
-                      {product.imageUrl ? (
-                        <img
-                          src={`http://localhost:4000${product.imageUrl}`}
-                          alt={product.name}
-                          className="w-full h-full object-cover rounded"
-                        />
-                      ) : (
-                        <div className="w-full h-full bg-gray-200 rounded"></div>
-                      )}
-                    </div>
-                    <h4 className="text-lg text-black-1 font-semibold mb-2 mt-4">{product.name}</h4>
-                    <p className="text-grey-3 text-xl">
-                      {product.onSale?.isOnSale ? (
-                        <>
-                          <span className="line-through">{product.price} ₸</span>
-                          <span className="text-red-500 ml-2">{product.onSale.salePrice} ₸</span>
-                        </>
-                      ) : (
-                        <>{product.price} ₸</>
-                      )}
-                    </p>
-                    {product.manufacturer && (
-                      <p className="text-grey-3 text-sm">Производитель: {product.manufacturer.name}</p>
-                    )}
-                    {product.onSale?.isOnSale && (
-                      <p className="text-sm text-red-500 mt-2">{product.onSale.saleDescription}</p>
-                    )}
-                    <div className='container mx-auto flex justify-between pt-4 justify-items-center mt-12 '>
-                      <div className='p-2 rounded-2xl bg-grey-2'>
-                        <svg xmlns="http://www.w3.org/2000/svg" onClick={() => handleAddToCart(product)} fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="text-gray-400 size-12 p-2 hover:text-red-1 ease-out duration-300">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
-                        </svg>
+            <>
+              <ul className="grid grid-cols-3 col-span-6 gap-4">
+                {products.map((product) => (
+                  <Link key={product.id} href={`/products/${product.id}`}>
+                    <div className="border rounded-lg p-4 shadow-xl hover:transition-all cursor-pointer">
+                      <div className="relative w-full bg-white h-72 mb-4 rounded">
+                        {product.imageUrl ? (
+                          <img
+                            src={`http://localhost:4000${product.imageUrl}`}
+                            alt={product.name}
+                            className="w-full h-full object-cover rounded"
+                          />
+                        ) : (
+                          <div className="w-full х-full bg-gray-200 rounded"></div>
+                        )}
                       </div>
-                      <button className='p-2 rounded-2xl mx-4 font-bold w-full text-lg text-center bg-red-1 text-white'>Купить</button>
+                      <h4 className="text-lg text-black-1 font-semibold mb-2 mt-4">{product.name}</h4>
+                      <p className="text-grey-3 text-xl">
+                        {product.onSale?.isOnSale ? (
+                          <>
+                            <span className="line-through">{product.price} ₸</span>
+                            <span className="text-red-500 ml-2">{product.onSale.salePrice} ₸</span>
+                          </>
+                        ) : (
+                          <>{product.price} ₸</>
+                        )}
+                      </p>
+                      {product.manufacturer && (
+                        <p className="text-grey-3 text-sm">Производитель: {product.manufacturer.name}</p>
+                      )}
+                      {product.onSale?.isOnSale && (
+                        <p className="text-sm text-red-500 mt-2">{product.onSale.saleDescription}</p>
+                      )}
+                      <div className='container mx-auto flex justify-between pt-4 justify-items-center mt-12 '>
+                        <div className='p-2 rounded-2xl bg-grey-2'>
+                          <svg xmlns="http://www.w3.org/2000/svg" onClick={() => handleAddToCart(product)} fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="text-gray-400 size-12 p-2 hover:text-red-1 ease-out duration-300">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                          </svg>
+                        </div>
+                        <button className='p-2 rounded-2xl mx-4 font-bold w-full text-lg text-center bg-red-1 text-white'>Купить</button>
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              ))}
-            </ul>
+                  </Link>
+                ))}
+              </ul>
+              <div className="flex justify-center mt-8">
+                <PaginationComponent
+                  totalPages={totalPages}
+                  currentPage={currentPage}
+                  onPageChange={handlePageChange}
+                />
+              </div>
+            </>
           )}
         </CatalogLayout>
       </div>
