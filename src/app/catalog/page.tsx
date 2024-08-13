@@ -28,7 +28,7 @@ const override: CSSProperties = {
 };
 
 const fetchAllProducts = async (filters, page) => {
-  let url = `http://localhost:4000/api/products`;
+  let url = `http://localhost:4000/api/products/products`;
   const params = { ...filters, page };
 
   if (params.onSale === false) {
@@ -60,7 +60,6 @@ const fetchAllProducts = async (filters, page) => {
   return { products, totalPages: data.totalPages, minPrice: data.minPrice, maxPrice: data.maxPrice };
 }
 
-
 const AllProductsPage = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -77,15 +76,14 @@ const AllProductsPage = () => {
       try {
         const { products, totalPages, minPrice, maxPrice } = await fetchAllProducts(filters, currentPage);
         if (!isNaN(minPrice) && !isNaN(maxPrice)) {
-          const priceRange = `${minPrice} - ${maxPrice}`;
-          console.log(priceRange);
+          console.log(`Price range: ${minPrice} - ${maxPrice}`);
         } else {
           console.error('Не удалось определить диапазон цен:', minPrice, maxPrice);
         }
         setProducts(products);
         setTotalPages(totalPages);
-        setMinPrice(minPrice);
-        setMaxPrice(maxPrice);
+        setMinPrice(isNaN(minPrice) ? 0 : minPrice);
+        setMaxPrice(isNaN(maxPrice) ? 10000 : maxPrice);
       } catch (error) {
         console.error(error);
       } finally {
