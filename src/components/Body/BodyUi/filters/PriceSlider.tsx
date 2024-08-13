@@ -37,7 +37,7 @@ const PriceSlider: React.FC<PriceSliderProps> = ({ onPriceChange, minPrice, maxP
       <h3 className="text-lg font-bold text-grey-1">Цена от и до:</h3>
       <div className="flex justify-between my-4">
         <Input
-          className="w-1/2"
+          className="px-4"
           placeholder="Минимальная цена"
           min={minPrice}
           max={priceRange[1]}
@@ -45,7 +45,7 @@ const PriceSlider: React.FC<PriceSliderProps> = ({ onPriceChange, minPrice, maxP
           onChange={handleMinInputChange}
         />
         <Input
-          className="w-1/2"
+          className="px-4"
           placeholder="Максимальная цена"
           min={priceRange[0]}
           max={maxPrice}

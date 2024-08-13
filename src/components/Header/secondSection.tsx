@@ -18,10 +18,10 @@ const SecondSection = () => {
 			<Link href="/">
             <Image src={Gamma} alt="Gamma" width={250} height={250} className='' />
             </Link>
-			<section className='container  my-auto mx-5  '>
+			<section className='container  my-auto mx-5 w-1/2 '>
                 <DropDownUI item={menuItem[0]} />
             </section>
-            <section className='container mx-auto my-auto'>
+            <section className='container mx-auto w-full my-auto'>
                 <InputUI />
             </section>
             <section className='my-auto flex'>

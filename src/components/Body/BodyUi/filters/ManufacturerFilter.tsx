@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {Select, SelectSection, SelectItem} from "@nextui-org/select";
 
 const ManufacturerFilter = ({ onFilterChange }) => {
   const [manufacturers, setManufacturers] = useState([]);
@@ -20,19 +21,21 @@ const ManufacturerFilter = ({ onFilterChange }) => {
 
   return (
     <div>
-      <select
-        value={selectedManufacturer}
-        onChange={(e) => setSelectedManufacturer(e.target.value)}
-        style={{ margin: '10px 0', padding: '5px' }}
-      >
-        <option value="">Select Manufacturer</option>
-        {manufacturers.map((manufacturer) => (
-          <option key={manufacturer.id} value={manufacturer.id}>
-            {manufacturer.name}
-          </option>
-        ))}
-      </select>
-    </div>
+    <Select
+      value={selectedManufacturer}
+      onChange={(e) => setSelectedManufacturer(e.target.value)}
+      placeholder="Выберите производителя"
+      defaultSelectedKeys={["Все производители"]}
+      className="w-full"
+      style={{ width: '300px', minWidth: '300px' }} 
+    >
+      {manufacturers.map((manufacturer) => (
+        <SelectItem key={manufacturer.id} value={manufacturer.id}>
+          {manufacturer.name}
+        </SelectItem>
+      ))}
+    </Select>
+  </div>
   );
 };
 

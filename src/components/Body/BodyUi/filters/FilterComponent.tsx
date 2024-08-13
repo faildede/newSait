@@ -31,17 +31,17 @@ const FilterComponent: React.FC<FilterComponentProps> = ({ onFilterChange, minPr
   };
 
   return (
-    <div className="container mx-auto flex flex-col space-y-4 my-12">
-      <SaleFilter onSale={onSale} setOnSale={setOnSale} />
-      <ManufacturerFilter onFilterChange={setManufacturer} />
-      <PriceSlider
-          minPrice={minPrice}
-          maxPrice={maxPrice}
-          initialMinPrice={currentMinPrice}
-          initialMaxPrice={currentMaxPrice}
-          onPriceChange={handlePriceChange}
-        />
-    </div>
+<div className="container w-full flex justify-between items-center my-12">
+  <SaleFilter className="my-auto" onSale={onSale} setOnSale={setOnSale} />
+  <ManufacturerFilter className="my-auto" onFilterChange={setManufacturer} style={{ width: '40%' }} />
+  <PriceSlider className="my-auto"
+      minPrice={minPrice}
+      maxPrice={maxPrice}
+      initialMinPrice={currentMinPrice}
+      initialMaxPrice={currentMaxPrice}
+      onPriceChange={handlePriceChange}
+    />
+</div>
   );
 };
 

@@ -56,7 +56,7 @@ const DropDownUI = (props: Props) => {
                     <div
                         className="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300"
                         onClick={toggle}
-                        style={{ zIndex: 5 }}
+                        style={{ zIndex: 10 }}
                     ></div>
                     <div
                         className="absolute left-0 right-0 mt-4 w-screen bg-white p-2 text-black border-2 rounded-md shadow-lg z-10 transition-all duration-300 transform opacity-100 scale-100 max-w-7xl mx-auto"

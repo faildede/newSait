@@ -10,14 +10,12 @@ interface PaginationProps {
 const PaginationComponent: React.FC<PaginationProps> = ({ totalPages, currentPage, onPageChange }) => {
   return (
     <Pagination
-    color="danger"
-    size="lg"
+      color="danger"
+      size="lg"
       total={totalPages}
-      initialPage={currentPage}
+      page={currentPage}
       onChange={(page) => onPageChange(page)}
-
     />
-
   );
 };
 
