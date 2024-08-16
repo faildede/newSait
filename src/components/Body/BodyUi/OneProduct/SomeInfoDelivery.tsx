@@ -4,7 +4,7 @@ const SomeInfoDelivery = () => {
 
     return (
         <>
-<div className=" p-6 rounded-lg ">
+<div className="  rounded-lg ">
   <h2 className="text-2xl font-semibold mb-6 text-gray-800">Информация для заказа</h2>
 
   <div className="mb-6">

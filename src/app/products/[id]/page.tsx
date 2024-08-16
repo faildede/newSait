@@ -3,6 +3,8 @@ import FirstSection from '@/components/Header/firstSection';
 import SecondSection from '@/components/Header/secondSection';
 import Footer from '@/components/Body/Footer';
 import SomeTab from '@/components/Body/BodyUi/OneProduct/SomeTab';
+import CardPaymant from '@/components/Body/BodyUi/OneProduct/CardPayment';
+
 
 interface SliderItem {
   title: string;
@@ -17,6 +19,9 @@ interface Product {
   description: string;
   imageUrl: string;
   slider: SliderItem[];
+  manufacturer?: { name: string };
+  onSale?: { isOnSale: boolean; salePrice: number; saleDescription: string };
+  availability: number;
 }
 
 interface ProductPageProps {
@@ -30,7 +35,6 @@ const fetchProduct = async (id: string): Promise<Product> => {
   }
   const data = await res.json();
 
-  console.log('Fetched product data:', data);
 
   const sliderData = [
     ...(Array.isArray(data.slider) ? data.slider : []),
@@ -45,6 +49,9 @@ const fetchProduct = async (id: string): Promise<Product> => {
     description: data.description,
     imageUrl: data.image?.url || '',
     slider: sliderData,
+    manufacturer: data.manufacturer ? data.manufacturer : 'Unknown',
+    onSale: data.onSale,
+    availability: data.availability,
   };
 };
 
@@ -66,16 +73,22 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
       </nav>
       <div className="container mx-auto my-8 ">
         <h1 className="text-3xl font-bold mb-4 text-grey-1">{product.name}</h1>
-        <div className="flex">
+        <div className="flex justify-between container mx-auto ">
           {product.imageUrl ? (
-            <img src={`http://localhost:4000${product.imageUrl}`} alt={product.name} className="h-auto object-cover rounded-lg" />
+            <img src={`http://localhost:4000${product.imageUrl}`} alt={product.name} className=" h-96 object-cover rounded-lg" />
           ) : (
             <div className="w-1/2 h-auto object-cover rounded-lg shadow-md bg-gray-200 flex items-center justify-center">
               <span>Image not available</span>
             </div>
           )}
           <div className="ml-8">
-            <p className="text-xl font-semibold mb-4">{product.price} ₸</p>
+          
+            <CardPaymant 
+              price={product.price}
+              availability={product.availability}
+              manufacturer={product.manufacturer?.name || 'Unknown'}
+              product={product}
+            />
           </div>
         </div>
         <div className="container my-12">

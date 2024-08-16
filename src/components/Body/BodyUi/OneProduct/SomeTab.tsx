@@ -31,9 +31,7 @@ const extractTextFromDescription = (description: any): string => {
 
 const SomeTab = ({ description, slider }: SomeTabProps) => {
   const descriptionText = extractTextFromDescription(description);
-  console.log(descriptionText, slider);
   
-  const [selected, setSelected] = useState("photos");
 
   return (
     <div className="flex w-full flex-col">
@@ -42,7 +40,7 @@ const SomeTab = ({ description, slider }: SomeTabProps) => {
         color="default" 
         variant="bordered"
         classNames={{
-          tabList: "gap-6 w-full relative rounded-none p-0 underlined",
+          tabList: "gap-6 w-full relative rounded-none border-none  p-2 underlined",
           cursor: "w-full bg-default py-2",
           tab: "max-w-fit px-0 h-12",
           tabContent: "group-data-[selected=true]:text-grey-1"
@@ -59,8 +57,8 @@ const SomeTab = ({ description, slider }: SomeTabProps) => {
             </div>
           }
         >
-          <Card>
-            <CardBody>
+          <Card className="border-0 shadow-none rounded-none" >
+            <CardBody >
               <div style={{ whiteSpace: 'pre-wrap' }} className="p-6">
                 {descriptionText || 'Нет текста описания товара'}
               </div>
@@ -79,9 +77,9 @@ const SomeTab = ({ description, slider }: SomeTabProps) => {
             </div>
           }
         >
-          <Card>
+          <Card className="border-0 shadow-none rounded-none">
             <CardBody>
-              <div className="p-6">
+              <div className="">
                 <Characteristics slider={slider} />
               </div>
             </CardBody>
@@ -98,7 +96,7 @@ const SomeTab = ({ description, slider }: SomeTabProps) => {
             </div>
           }
         >
-          <Card>
+          <Card className="border-0 shadow-none rounded-none">
             <CardBody>
               <SomeInfoDelivery />
             </CardBody>
