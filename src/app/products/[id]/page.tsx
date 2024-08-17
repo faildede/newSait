@@ -56,7 +56,6 @@ const fetchProduct = async (id: string): Promise<Product> => {
 };
 
 const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
-  console.log('Product data passed to component:', product);
   return (
     <>
       <nav className="top-0 left-0 right-0 z-50">

@@ -16,7 +16,7 @@ const SecondSection = () => {
     return (
         <nav className='flex'>
 			<Link href="/">
-            <Image src={Gamma} alt="Gamma" width={250} height={250} className='' />
+            <Image src={Gamma} alt="Gamma" width={250} height={250} className='hidden md:block' />
             </Link>
 			<section className='container  my-auto mx-5 w-1/2 '>
                 <DropDownUI item={menuItem[0]} />

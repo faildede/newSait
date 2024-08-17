@@ -11,8 +11,7 @@ import menuItems from "../../../constant/index";
 const DropDownUI = (props: Props) => {
     const { item } = props;
     const [isOpen, setIsOpen] = useState<boolean>(false);
-    console.log(props)
-    console.log(item);
+
 
     const toggle = () => {
         setIsOpen(!isOpen);
@@ -40,7 +39,7 @@ const DropDownUI = (props: Props) => {
     return (
         <section className="">
             <div onClick={toggle}
-                className={`container p-4 border-2 border-red-1 mx-auto rounded-xl flex items-center cursor-pointer font-rubik transition-all duration-700 transform ${
+                className={`px-6 container p-4 border-2 border-red-1 mx-auto rounded-xl flex items-center cursor-pointer font-rubik transition-all duration-700 transform ${
                     isOpen ? "bg-white text-red-1" : "bg-red-1 text-white"
                 }`}>
                 {isOpen ? (
@@ -48,7 +47,7 @@ const DropDownUI = (props: Props) => {
                 ) : (
                     <Image src={Catalog} alt="catalog" height={46} width={46} className="transition-transform duration-300" />
                 )}
-                <p className="font-semibold font-rubik text-3xl mx-auto">Каталог</p>
+                <p className="text-lg  font-semibold font-rubik md:text-3xl mx-auto">Каталог</p>
             </div>
 
             {isOpen && (
