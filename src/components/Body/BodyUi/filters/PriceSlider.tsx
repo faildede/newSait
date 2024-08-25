@@ -61,7 +61,7 @@ const PriceSlider: React.FC<PriceSliderProps> = ({ onPriceChange, minPrice, maxP
         maxValue={maxPrice}
         value={priceRange}
         aria-label="Price Range"
-        className="max-w-md"
+        className="max-w-md text-red-1"
         range
         onChange={handleSliderChange}
       />

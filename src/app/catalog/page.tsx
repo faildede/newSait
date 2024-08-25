@@ -11,6 +11,7 @@ import { useCart } from '@/components/Body/CartContext';
 import Footer from '@/components/Body/Footer';
 import FilterComponent from '@/components/Body/BodyUi/filters/FilterComponent';
 import PaginationComponent from '@/components/Body/BodyUi/pagination';
+import { useRouter } from 'next/navigation';
 
 interface Product {
   id: string;
@@ -69,6 +70,7 @@ const AllProductsPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(10000);
+  const router = useRouter();
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -104,6 +106,10 @@ const AllProductsPage = () => {
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
+  };
+
+  const handleBuyNow = (product) => {
+    router.push(`/order/${product.id}`);
   };
 
   return (
@@ -184,7 +190,7 @@ const AllProductsPage = () => {
                       </p>
                     </div>
                   ) : (
-                    <span>{product.price} ₸</span>
+                    <span>Стоимость: {product.price} ₸</span>
                   )}
                 </div>
               </p>
@@ -225,7 +231,7 @@ const AllProductsPage = () => {
                       />
                     </svg>
                   </div>
-                  <button className="p-2 rounded-2xl mx-4 font-bold w-full text-lg text-center bg-red-1 text-white">
+                  <button onClick={() => handleBuyNow(product)} className="p-2 rounded-2xl mx-4 font-bold w-full text-lg text-center bg-red-1 text-white">
                     Купить
                   </button>
                 </div>

@@ -4,9 +4,11 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import FirstSection from '@/components/Header/firstSection';
 import SecondSection from '@/components/Header/secondSection';
+import ClientTabs from '@/components/Body/BodyUi/PersonPage/ClientTabs';
+import Footer from '@/components/Body/Footer';
 
 const UserPage = () => {
-  const [user, setUser] = useState(null);
+  const [userData, setUserData] = useState(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -29,7 +31,7 @@ const UserPage = () => {
         }
       })
       .then(data => {
-        setUser(data); 
+        setUserData(data); 
       })
       .catch(error => {
         console.error('Ошибка при получении данных пользователя:', error);
@@ -40,9 +42,12 @@ const UserPage = () => {
     }
   }, [router]);
 
-  if (!user) {
+  if (!userData) {
     return null; 
   }
+
+
+  const user = userData.user;
 
   return (
     <div>
@@ -58,7 +63,14 @@ const UserPage = () => {
           </div>
         </section>
       </nav>
-      <h1>Welcome, {user.name || 'Guest'}</h1> 
+
+      <div className='container mx-auto my-24 h-screen'>
+        <ClientTabs user={user} />
+      </div>
+
+      <footer className='p-24 bg-black-2'>
+          <Footer/>
+      </footer>
     </div>
   );
 };

@@ -7,7 +7,17 @@ import PaginationComponent from '../Body/BodyUi/pagination';
 import LoadingDots from '../Body/BodyUi/loadingDots';
 import { useCart } from '../Body/CartContext';
 import { useRecentlyViewed } from '../../hooks/useRecentlyViewed';
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Autoplay } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/navigation'; 
+import 'swiper/css/pagination'; 
+import 'swiper/css/scrollbar';
+import 'swiper/css/autoplay';
+
+SwiperCore.use([Autoplay]);
 
 interface Product {
   id: string;
@@ -56,7 +66,7 @@ const ProductList: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const { addToCart } = useCart();
   const { addProductToRecentlyViewed } = useRecentlyViewed();
-  // const router = useRouter();
+  const router = useRouter();
 
   const handleAddToCart = (product: Product) => {
     addToCart(product);
@@ -96,33 +106,40 @@ const ProductList: React.FC = () => {
     setCurrentPage(1);
   };
 
-  // const handleRoute = (id: string) => { 
-  //   router.push(`/products/${id}`);
-  // };
+  const handleBuyNow = (product) => {
+    router.push(`/order/${product.id}`);
+  };
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
-
   const renderMenu = (items: ProductcatalogProps[]) => (
-    <ul className="flex flex-wrap gap-4 mb-8">
+    <Swiper
+      spaceBetween={10}
+      slidesPerView="auto"
+      freeMode={true}
+      autoplay={{ delay: 3000, disableOnInteraction: false }} 
+      className="mb-8 py-4"
+    >
       {items.map(item => (
-        <li key={item.tag} className="flex flex-col items-center">
-          <div className={`flex px-4 cursor-pointer py-2 rounded ${selectedTag === item.tag ? 'bg-red-1 text-white' : 'bg-gray-200 text-gray-700'}`}
+        <SwiperSlide key={item.tag} className="flex-shrink-0" style={{ width: 'auto' }}>
+          <div
+            className={`flex px-4 cursor-pointer py-2 rounded ${
+              selectedTag === item.tag ? 'bg-red-1 text-white' : 'bg-gray-200 text-gray-700'
+            }`}
             onClick={() => handleTagClick(item.tag)}
           >
             {item.ImageUrl && (
               <Image src={item.ImageUrl} alt={item.name} width={40} height={40} className="w-16 h-16 object-cover mt-2" />
             )}
-            <button className='font-medium text-sm mx-2'>
+            <button className="font-medium text-lg mx-2">
               {item.name}
             </button>
           </div>
-        </li>
+        </SwiperSlide>
       ))}
-    </ul>
+    </Swiper>
   );
-
   return (
     <div className="container mx-auto p-4">
       <nav>
@@ -145,7 +162,7 @@ const ProductList: React.FC = () => {
           </div>
         ) : (
           <>
-              <div className="grid grid-cols-3 gap-6">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 my-24">
                 {products.map((product) => (
                   <div key={product.id} className="bg-white rounded-lg shadow-md transition-transform transform hover:-translate-y-2 hover:shadow-lg">
                     <Link href={`/products/${product.id}`}>
@@ -171,7 +188,7 @@ const ProductList: React.FC = () => {
                       <p className="text-grey-3 text-xl mb-2">
                         {product.onSale?.isOnSale ? (
                           <div className="flex flex-col">
-                            <p className="text-red-1 my-4"> <span className='text-grey-3'>Цена поскидке: </span> {product.onSale.salePrice} ₸</p>
+                            <p className="text-red-1 my-4"> <span className='text-grey-3'>Цена по скидке: </span> {product.onSale.salePrice} ₸</p>
                             <p className=" text-base text-grey-3">Старая цена: <span className='line-through'>{product.price}</span>  ₸</p>
                           </div>
                         ) : (
@@ -196,7 +213,7 @@ const ProductList: React.FC = () => {
                             <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
                           </svg>
                         </div>
-                        <button className='p-2 rounded-2xl mx-4 font-bold w-full text-lg text-center bg-red-1 text-white'>Купить</button>
+                        <button onClick={() => handleBuyNow(product)} className='p-2 rounded-2xl mx-4 font-bold w-full text-lg text-center bg-red-1 text-white'>Купить</button>
                       </div>
 
                     </div>

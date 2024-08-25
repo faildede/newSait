@@ -12,15 +12,10 @@ const Carousel = ({
   }[]
 }) => {
   const [currentImg, setCurrentImg] = useState(0);
-  const [carouselSize, setCarouselSize] = useState({ width: 0, height: 0 });
   const carouselRef = useRef<HTMLDivElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    const elem = carouselRef.current as HTMLDivElement;
-    const { width, height } = elem.getBoundingClientRect();
-    setCarouselSize({ width, height });
-
     intervalRef.current = setInterval(() => {
       setCurrentImg((prev) => (prev === data.length - 1 ? 0 : prev + 1));
     }, 8000);
@@ -48,25 +43,25 @@ const Carousel = ({
 
   return (
     <div>
-      <div className="relative h-64 overflow-hidden rounded-md">
+      <div className="relative h-64 md:h-96 lg:h-128 overflow-hidden rounded-md">
         <div
           ref={carouselRef}
           style={{
-            left: -currentImg * carouselSize.width,
+            transform: `translateX(-${currentImg * 100}%)`,
           }}
-          className="absolute flex h-full w-full transition-all duration-300"
+          className="absolute flex h-full w-full transition-transform duration-500"
         >
-  {data.map((v, i) => (
-  <div key={i} className="relative h-full w-full shrink-0 bg-cover bg-center">
-    <Image
-      className="pointer-events-none custom-image object-cover"
-      alt={`carousel-image-${i}`}
-      fill
-      src={v.image || 'https://random.imagecdn.app/500/500'}
-    />
-  </div>
-))}
-
+          {data.map((v, i) => (
+            <div key={i} className="relative h-full w-full shrink-0 bg-cover bg-center">
+              <Image
+                className="pointer-events-none custom-image object-cover"
+                alt={`carousel-image-${i}`}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                src={v.image || 'https://random.imagecdn.app/500/500'}
+              />
+            </div>
+          ))}
         </div>
         <button
           onClick={handlePrevClick}
@@ -87,7 +82,7 @@ const Carousel = ({
           <button
             key={i}
             onClick={() => handleDotClick(i)}
-            className={`h-1 mx-1 flex-1 cursor-pointer ${i === currentImg ? 'bg-black-1' : 'bg-gray-300'} w-1/6`}
+            className={`h-1 mx-1 cursor-pointer ${i === currentImg ? 'bg-black-1' : 'bg-gray-300'} w-4 sm:w-6 md:w-8`}
             aria-label={`Go to slide ${i + 1}`}
           />
         ))}

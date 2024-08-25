@@ -30,18 +30,18 @@ const FirstSection = () => {
       .then(response => {
         if (response.ok) {
           return response.json();
-          console.log('User data fetched successfully:', response);
         } else {
           throw new Error('Failed to fetch user data');
         }
       })
       .then(data => {
-        setUser(data);
+        console.log('User data:', data); 
+        setUser(data.user); 
       })
       .catch(error => {
         console.error('Ошибка при получении данных пользователя:', error);
         localStorage.removeItem('token');
-        router.push('/login');
+        router.push('/');
       });
     }
   }, [router]);
@@ -75,7 +75,7 @@ const FirstSection = () => {
         >
           <div className='flex items-center p-0 m-0 text-white cursor-pointer'>
             <FontAwesomeIcon className='p-1 mx-2' icon={faUser} />
-            <p className='my-auto'>{user.name || 'Пользователь'}</p>
+            <p className='my-auto'>{user.name || 'Пользователь'}</p> 
           </div>
         </Tooltip>
       ) : (

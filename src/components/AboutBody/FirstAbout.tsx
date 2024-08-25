@@ -108,7 +108,7 @@ const FirstAbout = () => {
 
     return (
         <>
-                {
+              {
                 text.map((item) => (
                     <div key={item.id} className='flex my-12'>
                     <div className='w-1/2'>
