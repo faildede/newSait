@@ -2,16 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useCart } from '@/components/Body/CartContext';
 import FirstSection from '@/components/Header/firstSection';
 import SecondSection from '@/components/Header/secondSection';
 import Footer from '@/components/Body/Footer';
 import InfoTab from '@/components/Body/OrderTab/InfoTab';
 import DeliveryTab from '@/components/Body/OrderTab/DeliveryTab';
-import RightLayout from '@/components/Body/OrderTab/RightLayout';
-import OrderProduct from '@/components/Body/OrderTab/OrderProduct';  // Исправлено название компонента
-
-
+import OrderProduct from '@/components/Body/OrderTab/OrderProduct';  
+import { Textarea } from "@nextui-org/react";
 
 const OrderPage = ({ params }) => {
   const router = useRouter();
@@ -19,12 +16,20 @@ const OrderPage = ({ params }) => {
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [clientType, setClientType] = useState('individual');  
+  const [orderDetails, setOrderDetails] = useState({
+    fullName: '',
+    surname: '',
+    patronymic: '',
+    phone: '',
+    email: '',
+    inn: '',  
+    deliveryMethod: 'pickup', 
+    address: '',
+    comment: '',
+  });
 
-  const handleQuantityChange = (newQuantity, newTotalPrice) => {
-    setQuantity(newQuantity);
-    setTotalPrice(newTotalPrice);
-  };
-
+  // Загрузка товара при переходе на страницу
   useEffect(() => {
     if (productId) {
       fetchProduct(productId);
@@ -36,11 +41,75 @@ const OrderPage = ({ params }) => {
       const res = await fetch(`http://localhost:4000/api/products/${id}`);
       const data = await res.json();
       setProduct(data);
-      setTotalPrice(data.price); 
+      setTotalPrice(data.finalPrice); 
     } catch (error) {
       console.error('Failed to fetch product', error);
     }
   };
+
+  const handleQuantityChange = (newQuantity) => {
+    const newTotalPrice = product.finalPrice * newQuantity; 
+    setQuantity(newQuantity);
+    setTotalPrice(newTotalPrice);
+  };
+
+  const calculateDiscount = (price, finalPrice) => {
+    if (!price || !finalPrice || price <= finalPrice) return 0;
+    return price - finalPrice;
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setOrderDetails(prevState => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleOrderSubmit = async () => {
+    const orderData = {
+      clientType: clientType,
+      fullName: `${orderDetails.surname} ${orderDetails.name} ${orderDetails.patronymic}`,
+      surname: orderDetails.surname,  
+      email: orderDetails.email,      
+      phone: orderDetails.phone,
+      deliveryMethod: orderDetails.deliveryMethod,
+      address: orderDetails.deliveryMethod === 'delivery' ? orderDetails.address : null,
+      products: [
+        {
+          product: product.id,
+          quantity: quantity,
+        }
+      ],
+      totalPrice: totalPrice,
+      status: 'pending',
+      additionalDetails: orderDetails.comment,
+    };
+  
+    try {
+      const res = await fetch('http://localhost:4000/api/orders', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(orderData),
+      });
+  
+      if (res.ok) {
+        const createOrder = await res.json();
+        if (createOrder.orderId) {
+          console.log('Redirecting to AfterOrder page with orderId:', createOrder.orderId);
+          router.push(`/AfterOrder?orderId=${createOrder.orderId}`);
+        } else {
+          console.error('Order ID is missing');
+        }
+      } else {
+        console.error('Failed to create order');
+      }
+    } catch (error) {
+      console.error('Failed to submit order', error);
+    }
+  };  
 
   return (
     <div>
@@ -57,42 +126,64 @@ const OrderPage = ({ params }) => {
         </section>
       </nav>
       <div className='container mx-auto flex justify-between'>
-
         <div className='w-full'>
           <h1 className='text-5xl font-semibold text-grey-1 py-12'>Оформление заказа</h1>
 
           <div>
-            <h4 className='text-3xl font-semibold text-grey-1 py-4'>
-              Детали заказа
-            </h4>
-            <InfoTab />
+            <h4 className='text-3xl font-semibold text-grey-1 py-4'>Детали заказа</h4>
+            <InfoTab onInputChange={handleInputChange} setClientType={setClientType} />
           </div>
 
           <div className='my-12'>
             <h4 className='text-3xl font-semibold text-grey-1 py-4'>Доставка</h4>
-            <DeliveryTab />
+            <DeliveryTab onInputChange={handleInputChange} />
 
             <div className='my-24'>
-              <p className='text-xl font-bold text-grey-1 py-2 '>По согласованию, менеджер свяжется с Вами  и уточнит все детали. Заказ можно хранить у нас бесплатно 
-                12 месяцев. Привезем по потребности</p>
-              <p className='text-xl font-bold text-black-1 py-2 '>Внимание! При заказе товаров, доставка которых осуществляется крупногабаритным транспортом, обязательно учитывайте 
-                взмодность проезда транспорта!</p>
-              <p className='text-lg font-base text-grey-1 py-2'>В случае отсутствия соответствующих подъездных путей, доставка будет осуществлена максимально близко к месту 
-                планируемой выгрузки. Водитель вправе отказать в подъезде транспорта , если в случае его маневров может быть
-                поврежден автомобиль, или нарушены установленные ПДД.</p>  
-            </div>
-            
-            <div>
               <h4 className='text-3xl font-semibold text-grey-1 py-4'>Товары в заказе</h4>
-              <OrderProduct product={product} onQuantityChange={handleQuantityChange} /> {/* Передаем handleQuantityChange */}
+              <OrderProduct product={product} onQuantityChange={handleQuantityChange} /> 
+            </div>
+
+            <div>
+              <h3 className='text-3xl font-semibold text-grey-1 py-4'>Комментарий к заказу</h3>
+              <Textarea
+                labelPlacement="outside"
+                placeholder="Ваш комментарий"
+                className="col-span-24 md:col-span-6 my-12 mb-6 md:mb-0"
+                style={{ height: '250px' }}
+                name="comment"
+                onChange={handleInputChange}
+              />
             </div>
           </div>
         </div>
-        <div className='w-1/3  py-12'>
-          <RightLayout quantity={quantity} totalPrice={totalPrice} />
-        </div>
       </div>
+      <div className='container mx-auto bg-grey-2 p-12 my-12 rounded-xl'>
+        <div className='text-lg text-gray-700 mb-4'>
+          <p className='flex justify-between mb-2'>
+            <span>Количество товара</span>
+            <span>{quantity}</span>
+          </p>
+          <p className='flex justify-between mb-2'>
+            <span>Сумма без скидки</span>
+            <span>{product?.price || 0} ₸</span>
+          </p>
+          <p className='flex justify-between'>
+            <span>Скидка</span>
+            <span>-{calculateDiscount(product?.price, product?.finalPrice)} ₸</span>
+          </p>
+        </div>
 
+        <div className='text-2xl font-semibold text-red-600 mb-6'>
+          <p className='flex justify-between'><span>Итого</span><span>{totalPrice}</span></p>
+        </div>
+
+        <button
+          className='bg-red-600 text-white w-96 items-right py-3 text-xl font-semibold rounded-lg'
+          onClick={handleOrderSubmit}
+        >
+          Заказать
+        </button>
+      </div>
       <footer className='p-24 bg-black-2'>
         <Footer />
       </footer>

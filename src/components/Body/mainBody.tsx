@@ -37,7 +37,7 @@ const MainBody = () => {
                         {staticCards.map((card, index) => (
                             <div 
                                 key={card.title || index} 
-                                className="flex flex-col bg-white w-full sm:w-64  mx-2 my-4 rounded-2xl sm:p-4 shadow-lg"
+                                className="flex flex-col bg-white w-full sm:w-80  mx-2 my-4 rounded-2xl sm:p-4 shadow-lg"
                             >
                                 <div className='flex items-center'>
                                     <div className='p-4 rounded-full bg-grey-2'>

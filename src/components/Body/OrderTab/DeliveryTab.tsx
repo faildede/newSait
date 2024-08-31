@@ -3,7 +3,7 @@ import Link from "next/link";
 
 
 
-const DeliveryTab = () => { 
+const DeliveryTab = ({ handleInputChange }) => { 
 
     return (
         <>
@@ -51,10 +51,12 @@ const DeliveryTab = () => {
                             <Input 
                             className="w-full p-3 "
                             placeholder="Город"
+                        //   onChange={onInputChange}
                             />
                             <Input 
                             className="w-full p-3 "
                             placeholder="Улица, дом / корпус"
+                            // onChange={onInputChange}
                             />
                         </div>
                         </CardBody>

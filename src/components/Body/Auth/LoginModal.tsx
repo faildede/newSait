@@ -109,7 +109,7 @@ const LoginModal = ({ isOpen, onOpenChange }) => {
                           className="max-w-xs"
                         />
                         <Input
-                          label="Password"
+                          label="Пароль"
                           variant="bordered"
                           placeholder="Введите ваш пароль"
                           onChange={(e) => setPassword(e.target.value)}
@@ -125,17 +125,18 @@ const LoginModal = ({ isOpen, onOpenChange }) => {
                           type={isVisible ? "text" : "password"}
                           className="max-w-xs"
                         />
+                       
+                        <div className="flex gap-2 justify-end">
+                          <Button fullWidth color="primary" onPress={handleLogin} className='bg-grey-1 font-medium text-xl'>
+                            Войти
+                          </Button>
+                        </div>
                         <p className="text-center text-lg">
                           Нет аккаунта ?{" "}
                           <Button size="xl" className='border-none bg-white text-lg' onPress={() => setSelected("sign-up")}>
                             Зарегистрироваться
                           </Button>
                         </p>
-                        <div className="flex gap-2 justify-end">
-                          <Button fullWidth color="primary" onPress={handleLogin} className='bg-grey-1 font-medium text-xl'>
-                            Войти
-                          </Button>
-                        </div>
                       </form>
                     </Tab>
                     <Tab key="sign-up" title="Зарегистрироваться">
@@ -192,17 +193,18 @@ const LoginModal = ({ isOpen, onOpenChange }) => {
                           type={isVisible ? "text" : "password"}
                           className="max-w-xs"
                         />
-                        <p className="text-center text-lg">
-                          Уже есть акаунт?{" "}
-                          <Button size="xl" className='border-none bg-white' onPress={() => setSelected("login")}>
-                            Войти
-                          </Button>
-                        </p>
+                        
                         <div className="flex gap-2 justify-end">
                           <Button fullWidth color="primary" onPress={handleRegister} className='bg-grey-1 font-medium text-xl'>
                             Зарегистрироваться
                           </Button>
                         </div>
+                        <p className="text-center text-lg">
+                          Уже есть акаунт?{"  "}
+                          <Button  className='border-none text-lg bg-white' onPress={() => setSelected("login")}>
+                            Войти
+                          </Button>
+                        </p>
                       </form>
                     </Tab>
                   </Tabs>

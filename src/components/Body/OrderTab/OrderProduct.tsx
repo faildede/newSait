@@ -51,8 +51,7 @@ const OrderProduct = ({ product, onQuantityChange }) => {
                         <div className='flex'>
                             <div className='px-4'>
                                 <h2 className="text-xl font-normal mb-2 w-80 text-grey-4">{product.name}</h2>
-                                <p className="text-black-2 mb-1">Цена за единицу: {product.price} ₸</p>
-                                <p className="text-black-2 mb-1">Итоговая цена: {product.price * quantity} ₸</p>
+                                <p className="text-black-2 mb-1">Цена за единицу: {product.finalPrice} ₸</p>
                             </div>
                             <div className="flex items-center mb-1">
                                 <button
