@@ -12,6 +12,17 @@ const AfterOrder = () => {
   const searchParams = useSearchParams();
   const orderId = searchParams.get('orderId');
   const [orderDetails, setOrderDetails] = useState(null);
+  const [isUserRegistered, setIsUserRegistered] = useState(false);
+
+  useEffect(() => {
+    const checkUserRegistration = () => {
+      if (localStorage.getItem('token')) {
+        setIsUserRegistered(true);
+      }
+    };
+
+    checkUserRegistration();
+  }, []);
 
   useEffect(() => {
     if (!orderId) {
@@ -89,15 +100,15 @@ const AfterOrder = () => {
               <Link href="/" className="text-white bg-black-1 py-4 px-6 rounded-lg mt-8 block  mx-auto text-center">
                 На главную
               </Link>
-              {orderDetails.isRegistered ? (
-                <Link href="/account" className="text-white bg-red-1 py-2 px-6 rounded-lg mt-8 block  mx-auto text-center">
-                  Перейти в свой аккаунт
-                </Link>
-              ) : (
-                <Link href="/signup" className="text-white bg-red-1 py-2 px-6 rounded-lg mt-8 block  mx-auto text-center">
-                  Создать аккаунт
-                </Link>
-              )}
+              {isUserRegistered ? (
+              <Link href="/UserPage" className="text-white bg-red-1 py-4 px-6 rounded-lg mt-8 block mx-auto text-center">
+                Перейти в свой аккаунт
+              </Link>
+            ) : (
+              <Link href="/signup" className="text-white bg-red-1 py-4 px-6 rounded-lg mt-8 block mx-auto text-center">
+                Создать аккаунт
+              </Link>
+            )}
             </div>
         
         </div>

@@ -51,7 +51,7 @@ const DeliveryTab = ({ handleInputChange }) => {
                             <Input 
                             className="w-full p-3 "
                             placeholder="Город"
-                        //   onChange={onInputChange}
+                            // onChange={onInputChange}
                             />
                             <Input 
                             className="w-full p-3 "

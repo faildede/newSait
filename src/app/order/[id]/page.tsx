@@ -66,6 +66,53 @@ const OrderPage = ({ params }) => {
     }));
   };
 
+  // const handleOrderSubmit = async () => {
+  //   const orderData = {
+  //     clientType: clientType,
+  //     fullName: `${orderDetails.surname} ${orderDetails.name} ${orderDetails.patronymic}`,
+  //     surname: orderDetails.surname,  
+  //     email: orderDetails.email,      
+  //     phone: orderDetails.phone,
+  //     deliveryMethod: orderDetails.deliveryMethod,
+  //     address: orderDetails.deliveryMethod === 'delivery' ? orderDetails.address : null,
+  //     products: [
+  //       {
+  //         product: product.id,
+  //         quantity: quantity,
+  //       }
+  //     ],
+  //     totalPrice: totalPrice,
+  //     status: 'pending',
+  //     additionalDetails: orderDetails.comment,
+  //   };
+  
+  //   try {
+  //     const token = localStorage.getItem('token');
+
+  //     const res = await fetch('http://localhost:4000/api/orders', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         'Authorization': `Bearer ${token}`,
+  //       },
+  //       body: JSON.stringify(orderData),
+  //     });
+  
+  //     if (res.ok) {
+  //       const createOrder = await res.json();
+  //       if (createOrder.orderId) {
+  //         console.log('Redirecting to AfterOrder page with orderId:', createOrder.orderId);
+  //         router.push(`/AfterOrder?orderId=${createOrder.orderId}`);
+  //       } else {
+  //         console.error('Order ID is missing');
+  //       }
+  //     } else {
+  //       console.error('Failed to create order');
+  //     }
+  //   } catch (error) {
+  //     console.error('Failed to submit order', error);
+  //   }
+  // };  
   const handleOrderSubmit = async () => {
     const orderData = {
       clientType: clientType,
@@ -87,11 +134,18 @@ const OrderPage = ({ params }) => {
     };
   
     try {
+      const token = localStorage.getItem('token');
+      const headers = {
+        'Content-Type': 'application/json',
+      };
+  
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+      }
+  
       const res = await fetch('http://localhost:4000/api/orders', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: headers,
         body: JSON.stringify(orderData),
       });
   
@@ -109,7 +163,7 @@ const OrderPage = ({ params }) => {
     } catch (error) {
       console.error('Failed to submit order', error);
     }
-  };  
+  };
 
   return (
     <div>
