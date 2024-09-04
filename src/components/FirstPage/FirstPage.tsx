@@ -38,7 +38,7 @@ const FirstPage = () => {
         <section className='mt-24 bg-grey-2 p-24'>
           <MapBlock />
         </section>
-        <section className='mt-24  p-24'>
+        <section className='mt-24  md:p-24'>
           <SomeInfo />
         </section>
         <section className='mt-24  p-24'>

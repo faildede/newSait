@@ -4,7 +4,7 @@ import { useDebouncedCallback } from 'use-debounce';
 import Search from '@/api/Search';
 import { useState, useEffect, useRef } from 'react';
 
-const InputUI = () => {
+const  InputUI = () => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();

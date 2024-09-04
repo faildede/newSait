@@ -96,11 +96,6 @@ export const firstHeadItem: Item[] = [
         name: 'Доставка',
         route: '/delivery',
     },
-    {
-        id: 5,
-        name: 'Новости',
-        route: '/news',
-    }
 ];
 
 export interface MenuItem {

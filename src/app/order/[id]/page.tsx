@@ -17,6 +17,9 @@ const OrderPage = ({ params }) => {
   const [quantity, setQuantity] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);
   const [clientType, setClientType] = useState('individual');  
+  const [deliveryMethod, setDeliveryMethod] = useState('pickup');
+
+
   const [orderDetails, setOrderDetails] = useState({
     fullName: '',
     surname: '',
@@ -27,9 +30,11 @@ const OrderPage = ({ params }) => {
     deliveryMethod: 'pickup', 
     address: '',
     comment: '',
+    city: '',   
+    street: '',
   });
 
-  // Загрузка товара при переходе на страницу
+  
   useEffect(() => {
     if (productId) {
       fetchProduct(productId);
@@ -58,61 +63,23 @@ const OrderPage = ({ params }) => {
     return price - finalPrice;
   };
 
+  
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setOrderDetails(prevState => ({
+    if(name === 'city' || name === 'street') {
+      setOrderDetails((prevState) => ({
+        ...prevState,
+        address: `${orderDetails.city}, ${orderDetails.street}`,
+      }));
+    }
+
+    setOrderDetails((prevState) => ({
       ...prevState,
       [name]: value,
-    }));
-  };
-
-  // const handleOrderSubmit = async () => {
-  //   const orderData = {
-  //     clientType: clientType,
-  //     fullName: `${orderDetails.surname} ${orderDetails.name} ${orderDetails.patronymic}`,
-  //     surname: orderDetails.surname,  
-  //     email: orderDetails.email,      
-  //     phone: orderDetails.phone,
-  //     deliveryMethod: orderDetails.deliveryMethod,
-  //     address: orderDetails.deliveryMethod === 'delivery' ? orderDetails.address : null,
-  //     products: [
-  //       {
-  //         product: product.id,
-  //         quantity: quantity,
-  //       }
-  //     ],
-  //     totalPrice: totalPrice,
-  //     status: 'pending',
-  //     additionalDetails: orderDetails.comment,
-  //   };
-  
-  //   try {
-  //     const token = localStorage.getItem('token');
-
-  //     const res = await fetch('http://localhost:4000/api/orders', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         'Authorization': `Bearer ${token}`,
-  //       },
-  //       body: JSON.stringify(orderData),
-  //     });
-  
-  //     if (res.ok) {
-  //       const createOrder = await res.json();
-  //       if (createOrder.orderId) {
-  //         console.log('Redirecting to AfterOrder page with orderId:', createOrder.orderId);
-  //         router.push(`/AfterOrder?orderId=${createOrder.orderId}`);
-  //       } else {
-  //         console.error('Order ID is missing');
-  //       }
-  //     } else {
-  //       console.error('Failed to create order');
-  //     }
-  //   } catch (error) {
-  //     console.error('Failed to submit order', error);
-  //   }
-  // };  
+    }))
+  }
+ 
   const handleOrderSubmit = async () => {
     const orderData = {
       clientType: clientType,
@@ -122,6 +89,7 @@ const OrderPage = ({ params }) => {
       phone: orderDetails.phone,
       deliveryMethod: orderDetails.deliveryMethod,
       address: orderDetails.deliveryMethod === 'delivery' ? orderDetails.address : null,
+
       products: [
         {
           product: product.id,
@@ -181,33 +149,22 @@ const OrderPage = ({ params }) => {
       </nav>
       <div className='container mx-auto flex justify-between'>
         <div className='w-full'>
-          <h1 className='text-5xl font-semibold text-grey-1 py-12'>Оформление заказа</h1>
+          <h1 className='text-3xl md:text-5xl font-semibold text-grey-1 py-12'>Оформление заказа</h1>
 
           <div>
-            <h4 className='text-3xl font-semibold text-grey-1 py-4'>Детали заказа</h4>
+            <h4 className='text-2xl md:text-3xl font-semibold text-grey-1 py-4'>Детали заказа</h4>
             <InfoTab onInputChange={handleInputChange} setClientType={setClientType} />
           </div>
 
           <div className='my-12'>
             <h4 className='text-3xl font-semibold text-grey-1 py-4'>Доставка</h4>
-            <DeliveryTab onInputChange={handleInputChange} />
+            <DeliveryTab handleInputChange={handleInputChange} />
 
             <div className='my-24'>
               <h4 className='text-3xl font-semibold text-grey-1 py-4'>Товары в заказе</h4>
               <OrderProduct product={product} onQuantityChange={handleQuantityChange} /> 
             </div>
 
-            <div>
-              <h3 className='text-3xl font-semibold text-grey-1 py-4'>Комментарий к заказу</h3>
-              <Textarea
-                labelPlacement="outside"
-                placeholder="Ваш комментарий"
-                className="col-span-24 md:col-span-6 my-12 mb-6 md:mb-0"
-                style={{ height: '250px' }}
-                name="comment"
-                onChange={handleInputChange}
-              />
-            </div>
           </div>
         </div>
       </div>

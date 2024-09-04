@@ -46,7 +46,7 @@ const AfterOrder = () => {
   }, [orderId]);
 
   if (!orderDetails) {
-    return <p>Загрузка...</p>;
+    return (<p>Загрузка...</p>);
   }
 
   return (
@@ -70,17 +70,17 @@ const AfterOrder = () => {
           <p className="text-grey-1 text-xl py-4 w-9/12">Ваш заказ был успешно оформлен. Чуть позже с вами созвониться наш менеджер для дополнительной информации. Ниже приведена информация о заказе:</p>
 
           <div className="bg-white ">
-            <h4 className="text-3xl font-semibold text-grey-1 py-2">Информация о заказе</h4>
+            <h4 className="text-3xl font-semibold text-grey-4 py-2">Информация о заказе</h4>
             <div className='flex gap-6 text-lg'>
               <div>
-                <p className='text-grey-5'><strong className='text-xl px-2 text-grey-4'>Имя клиента:</strong> {orderDetails.fullName}</p>
-                <p className='text-grey-5'><strong className='text-xl px-2 text-grey-4'>Телефон:</strong> {orderDetails.phone}</p>
-                <p className='text-grey-5'> <strong className='text-xl px-2 text-grey-4'>E-mail:</strong> {orderDetails.email}</p>
-                <p className='text-grey-5'><strong className='text-xl px-2 text-grey-4'>Метод доставки:</strong> {orderDetails.deliveryMethod === 'delivery' ? 'Доставка' : 'Самовывоз'}</p>
+                <p className='text-grey-5'><strong className='text-xl px-2 text-grey-1'>Имя клиента:</strong> {orderDetails.fullName}</p>
+                <p className='text-grey-5'><strong className='text-xl px-2 text-grey-1'>Телефон:</strong> {orderDetails.phone}</p>
+                <p className='text-grey-5'> <strong className='text-xl px-2 text-grey-1'>E-mail:</strong> {orderDetails.email}</p>
+                <p className='text-grey-5'><strong className='text-xl px-2 text-grey-1'>Метод доставки:</strong> {orderDetails.deliveryMethod === 'delivery' ? 'Доставка' : 'Самовывоз'}</p>
               </div>
               <div>
                 {orderDetails.deliveryMethod === 'delivery' && (
-                  <p className='text-grey-5'><strong className='text-xl px-2 text-grey-4'>Адрес доставки:</strong> {orderDetails.address}</p>
+                  <p className='text-grey-5'><strong className='text-xl px-2 text-grey-1'>Адрес доставки:</strong> {orderDetails.address}</p>
                 )}
                 <h5 className="text-xl font-semibold ">Товары в заказе:</h5>
                 <ul>

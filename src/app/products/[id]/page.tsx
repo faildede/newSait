@@ -72,12 +72,12 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
       </nav>
       <div className="container mx-auto my-8 ">
         <h1 className="text-3xl font-bold mb-4 text-grey-1">{product.name}</h1>
-        <div className="flex justify-between container mx-auto ">
+        <div className="md:flex justify-between container mx-auto ">
           {product.imageUrl ? (
             <img src={`http://localhost:4000${product.imageUrl}`} alt={product.name} className=" h-96 object-cover rounded-lg" />
           ) : (
             <div className="w-1/2 h-auto object-cover rounded-lg shadow-md bg-gray-200 flex items-center justify-center">
-              <span>Image not available</span>
+              <span>Нет изображения</span>
             </div>
           )}
           <div className="ml-8">

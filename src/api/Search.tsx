@@ -47,7 +47,7 @@ const Search = ({ term }) => {
   }, [term]);
 
   const handleProductClick = (productId) => {
-    push(`/product/${productId}`);
+    push(`/products/${productId}`);
   };
 
   const handleClickOutside = (event) => {

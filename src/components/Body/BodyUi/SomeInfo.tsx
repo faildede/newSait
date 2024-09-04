@@ -55,14 +55,14 @@ const infoAbout: infoAbouts[] = [
 const SomeInfo = () => {
     return (
         <div className="container mx-auto my-auto">
-            <h1 className="text-4xl font-semibold text-black-2">Почему именно мы?</h1>
+            <h1 className="text-3xl md:text-4xl font-semibold text-black-2">Почему именно мы?</h1>
             <div className="grid gap-6 grid-cols-4">
                 {infoAbout.map((item, index) => (
-                    <div key={index} className="flex justify-between mt-12">
+                    <div key={index} className="flex-wrap  md:flex md:justify-between mt-12">
                         <div>
                         <Image src={item.imageUrl} width={10} height={10} alt="icon" className="container mx-auto my-auto w-1/4 h-1/4 text-grey-3" />
-                            <h2 className="text-xl font-semibold text-black-3 my-4">{item.title}</h2>
-                            <p className="text-lg font-thin text-grey-3 my-4">{item.text}</p>
+                            <h2 className="text-lg md:text-xl font-semibold text-black-3 my-4">{item.title}</h2>
+                            <p className="text- md:text-lg font-thin text-grey-3 my-4">{item.text}</p>
                         </div>
                     </div>
                 ))}

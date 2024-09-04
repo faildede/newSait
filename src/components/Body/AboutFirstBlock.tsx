@@ -50,7 +50,7 @@ const AboutFirstBlock = () => {
                 <section className='my-24'>
                     <div>
                         <p className='text-black-3 text-3xl font-semibold'>Перейдите в каталог, чтобы ознакомиться с полным ассортиментом товаров</p>
-                        <div className='flex justify-between mt-12'>
+                        <div className='md:flex justify-between mt-12'>
                             <div>
                              <p className=' my-4 font-thin text-2xl'>Мы понимаем, что выбор правильного оборудования и материалов для сварки является ключевым для достижения высоких результатов в вашей работе. Именно поэтому мы собрали для вас лучшие предложения в одном месте.</p>
                             <p className=' my-4 font-thin text-2xl'>Мы уверены, что вы найдете то, что вам нужно, и останетесь довольны качеством нашей продукции и уровнем обслуживания.</p>
@@ -69,7 +69,7 @@ const AboutFirstBlock = () => {
                         </div>                      
                     </div>
                     <Link href="/catalog">
-                        <button className='rounded-lg mt-12 text-2xl text-white bg-red-1 px-6 py-4'>
+                        <button className='rounded-lg mt-4 md:mt-12 text-2xl text-white bg-red-1 px-6 py-4'>
                             Перейти в каталог
                         </button>
                     </Link>
@@ -77,13 +77,13 @@ const AboutFirstBlock = () => {
 
                 <section>
                     <div>
-                        <p className="text-3xl text-black-2 w-1/2">Мы являемся официальными представителями таких брендов, как :</p>
+                        <p className="text-3xl text-black-2 md:w-1/2">Мы являемся официальными представителями таких брендов, как :</p>
                     </div>
                     <div>
                         <ul className="flex flex-wrap gap-4">
                             {logocompanys.map((logo, index) => (
                                 <li key={logo.imageUrl || index} className="flex flex-col items-center">
-                                    <div className='p-4 '>
+                                    <div className='md:p-4 '>
                                         <Image src={logo.imageUrl} alt={logo.imageUrl} className='container mx-auto my-auto w-80' width={500} height={500} />
                                     </div>
                                 </li>
