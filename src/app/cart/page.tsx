@@ -1,15 +1,24 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useCart } from '../../components/Body/CartContext';
 import FirstSection from '@/components/Header/firstSection';
 import SecondSection from '@/components/Header/secondSection';
 import Footer from '@/components/Body/Footer';
+import { Link } from '@nextui-org/react';
+
 
 const CartPage = () => {
   const { cart, removeFromCart, clearCart, increaseQuantity, decreaseQuantity, getTotalPrice } = useCart();
   const totalWithoutDiscount = getTotalPrice();
-  const discount = 1016; 
+  const discount = 1016;
   const totalPrice = totalWithoutDiscount - discount;
+
+  useEffect(() => {
+    if (cart.length > 0) {
+      localStorage.setItem('cartItems', JSON.stringify(cart));
+    }
+  }, [cart]);
+
   return (
     <section>
       <nav className="top-0 left-0 right-0 z-50">
@@ -42,8 +51,8 @@ const CartPage = () => {
                     <div className="p-4 flex w-full justify-between ">
                       <div className='flex'>
                         <div className='px-4'>
-                        <h2 className="text-xl font-normal mb-2 w-80 text-grey-4 ">{item.product.name}</h2>
-                        <p className="text-black-2 mb-1">{item.product.price} ₸</p>
+                          <h2 className="text-xl font-normal mb-2 w-80 text-grey-4 ">{item.product.name}</h2>
+                          <p className="text-black-2 mb-1">{item.product.price} ₸</p>
                         </div>
                         <div className="flex items-center mb-1 ">
                           <button
@@ -59,9 +68,9 @@ const CartPage = () => {
                             onClick={() => increaseQuantity(item.product.id)}
                             className=" text-gray-700 px-2 rounded"
                           >
-                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                          </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-6">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                            </svg>
 
                           </button>
                         </div>
@@ -75,7 +84,7 @@ const CartPage = () => {
               </div>
               <div className="w-full md:w-1/3 px-2">
                 <div className="bg-white p-4 rounded-lg shadow-md">
-                  
+
                   <ul className="mb-4">
                     <li className="flex justify-between my-2">
                       <span className="relative text-xl font-light text-grey-4">
@@ -106,10 +115,13 @@ const CartPage = () => {
                       <span className="font-thin text-xl">{totalPrice} KZT</span>
                     </li>
                   </ul>
-                
-                  <button className="bg-red-1 text-white text-xl font-semibold my-4 px-4 py-2 rounded w-full">
-                    Перейти к оформлению
-                  </button>
+
+                  <Link
+                  href= '/order'
+                  className="bg-red-1 text-white text-xl font-semibold my-4 px-4 py-2 rounded w-full"
+                >
+                  Перейти к оформлению
+                </Link>
                 </div>
               </div>
             </div>

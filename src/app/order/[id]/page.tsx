@@ -1,5 +1,6 @@
 'use client';
 
+import { useCart } from '@/components/Body/CartContext';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import FirstSection from '@/components/Header/firstSection';
@@ -18,6 +19,7 @@ const OrderPage = ({ params }) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [clientType, setClientType] = useState('individual');  
   const [deliveryMethod, setDeliveryMethod] = useState('pickup');
+  
 
 
   const [orderDetails, setOrderDetails] = useState({
