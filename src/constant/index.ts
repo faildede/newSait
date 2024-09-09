@@ -101,6 +101,7 @@ export const firstHeadItem: Item[] = [
 export interface MenuItem {
     title: string;
     route: string;
+    img: string;
     tag?: string;
     children?: MenuItem[];
 }
@@ -110,31 +111,37 @@ const menuItems: MenuItem[] = [
         title: 'Сварочные аппараты',
         route: '/welding equipment',
         tag: 'welding equipment',
+        img: '/categoryImage/aparat.svg',
         children: [
             {
                 title: 'Универсальные сварочные аппараты',
                 route: '/universal-welding-machines',
-                tag: 'universal-welding-machines'
+                tag: 'universal-welding-machines',
+                imageUrl: '/categoryImage/childrenImg/Unevercal.svg',
             },
             {
                 title: 'Аппараты для сварки в импульсном режиме',
                 route: '/welding-machines-in-pulse-mode',
-                tag: 'welding-machines-in-pulse-mode'
+                tag: 'welding-machines-in-pulse-mode',
+                imageUrl: '/categoryImage/childrenImg/Impuls.svg',
             },
             {
                 title: 'Агрегаты сварочные с ДВС (двигатель внутреннего сгорания)',
                 route: '/welding-units-with-internal-combustion-engine',
-                tag: 'welding-units-with-internal-combustion-engine'
+                tag: 'welding-units-with-internal-combustion-engine',
+                imageUrl: '/categoryImage/childrenImg/Dvc.svg',
             },
             {
                 title: 'Аргонодуговая сварка',
                 route: '/argon-arc-welding',
-                tag: 'argon-arc-welding'
+                tag: 'argon-arc-welding',
+                imageUrl: '/categoryImage/childrenImg/Argon.svg',
             },
             {
                 title: 'Аппараты полуавтоматической сварки',
                 route: '/semi-automatic-welding-machines',
-                tag: 'semi-automatic-welding-machines'
+                tag: 'semi-automatic-welding-machines',
+                imageUrl: '/categoryImage/childrenImg/Poly.svg',
             }
         ]
     },
@@ -142,26 +149,31 @@ const menuItems: MenuItem[] = [
         title: 'Оборудование для резки',
         route: '/Cutting equipment',
         tag: 'Cutting equipment',
+        img: '/categoryImage/apparatDlyaRezk.svg',
         children: [
             {
                 title: 'Резаки Harris',
                 route: '/harris-cutters',
-                tag: 'harris-cutters'
+                tag: 'harris-cutters',
+                imageUrl: '/categoryImage/childrenImg/RezakHarris.svg',
             },
             {
                 title: 'Мобильные системы резки',
                 route: '/mobile-cutting-systems',
-                tag: 'mobile-cutting-systems'
+                tag: 'mobile-cutting-systems',
+                imageUrl: '/categoryImage/childrenImg/Mobil.svg',
             },
             {
                 title: 'Источники для плазменной резки',
                 route: '/plasma-cutting-sources',
-                tag: 'plasma-cutting-sources'
+                tag: 'plasma-cutting-sources',
+                imageUrl: '/categoryImage/childrenImg/Istoch.svg',
             },
             {
                 title: 'Портальная резка металла',
                 route: '/portal-metal-cutting',
-                tag: 'portal-metal-cutting'
+                tag: 'portal-metal-cutting',
+                imageUrl: '/categoryImage/childrenImg/Portal.svg',
             }
         ]
     },
@@ -169,16 +181,19 @@ const menuItems: MenuItem[] = [
         title: 'Расходомеры, редукторы',
         route: '/Flow meters, reducers',
         tag: 'Flow meters, reducers',
+        img:'/categoryImage/Rashod.svg',
         children: [
             {
                 title: 'Редукторы промышленные',
                 route: '/industrial-reducers',
-                tag: 'industrial-reducers'
+                tag: 'industrial-reducers',
+                imageUrl: '/categoryImage/childrenImg/Redutor.svg',
             },
             {
                 title: 'Редукторы медицинские',
                 route: '/medical-reducers',
-                tag: 'medical-reducers'
+                tag: 'medical-reducers',
+                imageUrl: '/categoryImage/childrenImg/MedReductor.svg',
             }
         ]
     },
@@ -186,21 +201,26 @@ const menuItems: MenuItem[] = [
         title: 'Горелки, Запасные части',
         route: '/Burners. Spare parts',
         tag: 'Burners. Spare parts',
+        img: '/categoryImage/Gorelki.svg',
         children: [
             {
                 title: 'Сварочные горелки Mig/Mag',
                 route: '/mig-mag-welding-burners',
-                tag: 'mig-mag-welding-burners'
+                tag: 'mig-mag-welding-burners',
+                imageUrl: '/categoryImage/childrenImg/MigMag.svg',
+
             },
             {
                 title: 'Сварочные горелки Tig',
                 route: '/tig-welding-burners',
-                tag: 'tig-welding-burners'
+                tag: 'tig-welding-burners',
+                imageUrl: '/categoryImage/childrenImg/Tig.svg',
             },
             {
                 title: 'Плазменные резаки',
                 route: '/plasma-cutters',
-                tag: 'plasma-cutters'
+                tag: 'plasma-cutters',
+                imageUrl: '/categoryImage/childrenImg/PlasmRezak.svg',
             },
             {
                 title: 'Расходники на плазму',
@@ -218,6 +238,7 @@ const menuItems: MenuItem[] = [
         title: 'Сварочные материалы',
         route: '/Welding materials',
         tag: 'Welding materials',
+        img: '/categoryImage/Provolka.svg',
         children: [
             {
                 title: 'Сварочные материалы для трубопровода',
@@ -244,17 +265,20 @@ const menuItems: MenuItem[] = [
     {
         title: 'Машины контактной сварки',
         route: '/Resistance welding machines',
-        tag: 'Resistance welding machines'
+        tag: 'Resistance welding machines',
+        img: '/categoryImage/Contact.svg',
     },
     {
         title: 'Оборудование для сварки под флюсом',
         route: '/Submerged Welding Equipment',
-        tag: 'Submerged Welding Equipment'
+        tag: 'Submerged Welding Equipment',
+        img: '/categoryImage/flus.svg',
     },
     {
         title: 'Металлогибочные станки',
         route: '/Metal bending machines',
         tag: 'Metal bending machines',
+        img: '/categoryImage/MetalGib.svg',
         children: [
             {
                 title: 'Вальцы',
@@ -282,6 +306,7 @@ const menuItems: MenuItem[] = [
         title: 'Автоматизация сварочных процессов',
         route: '/automation of welding processes',
         tag: 'automation of welding processes',
+        img: '/categoryImage/avtoMat.svg',
         children: [
             {
                 title: 'Сварочные колонны',
@@ -319,6 +344,7 @@ const menuItems: MenuItem[] = [
         title: 'Сварочные аксессуары, cредства защиты',
         route: '/Welding accessories Protective equipment',
         tag: 'Welding accessories Protective equipment',
+        img: '/categoryImage/Maska.svg',
         children: [
             {
                 title: 'Электрододержатели',
@@ -371,6 +397,7 @@ const menuItems: MenuItem[] = [
         title: 'Лазер',
         route: '/Laser',
         tag: 'Laser',
+        img: '/categoryImage/secondLaser.svg',
         children: [
             {
                 title: 'Сварка лазером',
@@ -388,6 +415,7 @@ const menuItems: MenuItem[] = [
         title: 'Запасные части',
         route: '/Spare parts',
         tag: 'Spare parts',
+        img: '/categoryImage/Shatyn.svg',
         children: [
             {
                 title: 'KOHLER',

@@ -7,7 +7,7 @@ export interface Item {
 export interface MenuItem {
     tag: any;
 	bodytext: ReactNode;
-	imageUrl: string | StaticImport;
+	img: string | StaticImport;
 	title: string;
 	route?: string;
 	image?: string;

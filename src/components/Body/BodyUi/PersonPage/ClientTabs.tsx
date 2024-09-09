@@ -14,7 +14,7 @@ const statusTranslations = {
 
 const statusClasses = {
     pending: 'bg-black-1',
-    decorated: 'bg-yellow-400',
+    decorated: 'bg-yellow-700',
     processing: 'bg-orange-400',
     completed: 'bg-green-500',
     cancelled: 'bg-red-1'
@@ -175,7 +175,7 @@ const ClientTabs = ({ user }) => {
                                                     <div className="flex flex-col">
                                                     <ul className="ml-4">
                                                         {order.products.map((item, index) => (
-                                                            <div key={index} className="flex  ">
+                                                            <div key={index} className="flex py-8 ">
                                                                 <img
                                                                     src={`http://localhost:4000${item.product.image.url}`}
                                                                     alt={item.product.name}
