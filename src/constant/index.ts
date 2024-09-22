@@ -225,12 +225,14 @@ const menuItems: MenuItem[] = [
             {
                 title: 'Расходники на плазму',
                 route: '/plasma-consumables',
-                tag: 'plasma-consumables'
+                tag: 'plasma-consumables',
+                imageUrl: '/categoryImage/childrenImg/Rashodniki.svg',
             },
             {
                 title: 'Расходники для TIG',
                 route: '/tig-consumables',
-                tag: 'tig-consumables'
+                tag: 'tig-consumables',
+                imageUrl: '/categoryImage/childrenImg/TigRashodniki.svg',
             }
         ]
     },
@@ -243,22 +245,26 @@ const menuItems: MenuItem[] = [
             {
                 title: 'Сварочные материалы для трубопровода',
                 route: '/welding-materials-for-pipeline',
-                tag: 'welding-materials-for-pipeline'
+                tag: 'welding-materials-for-pipeline',
+                imageUrl: '/categoryImage/childrenImg/Materials.svg',
             },
             {
                 title: 'Сварочные электроды',
                 route: '/welding-electrodes',
-                tag: 'welding-electrodes'
+                tag: 'welding-electrodes',
+                imageUrl: '/categoryImage/childrenImg/Electrodi.svg',
             },
             {
                 title: 'Сварочная проволока, прутки',
                 route: '/welding-wire-rods',
-                tag: 'welding-wire-rods'
+                tag: 'welding-wire-rods',
+                imageUrl: '/categoryImage/childrenImg/Provolka.svg',
             },
             {
                 title: 'Материалы для пайки',
                 route: '/soldering-materials',
-                tag: 'soldering-materials'
+                tag: 'soldering-materials',
+                imageUrl: '/categoryImage/childrenImg/Payka.svg',
             }
         ]
     },
@@ -283,22 +289,26 @@ const menuItems: MenuItem[] = [
             {
                 title: 'Вальцы',
                 route: '/rollers',
-                tag: 'rollers'
+                tag: 'rollers',
+                imageUrl: '/categoryImage/childrenImg/Valci.svg',
             },
             {
                 title: 'Производство днищ',
                 route: '/bottom-production',
-                tag: 'bottom-production'
+                tag: 'bottom-production',
+                imageUrl: '/categoryImage/childrenImg/Dnishi.svg',
             },
             {
                 title: 'Профилегибочные станки',
                 route: '/profile-bending-machines',
-                tag: 'profile-bending-machines'
+                tag: 'profile-bending-machines',
+                imageUrl: '/categoryImage/childrenImg/Profil.svg',
             },
             {
                 title: 'Листогибы',
                 route: '/bending-presses',
-                tag: 'bending-presses'
+                tag: 'bending-presses',
+                imageUrl: '/categoryImage/childrenImg/Listogib.svg',
             }
         ]
     },
@@ -311,32 +321,38 @@ const menuItems: MenuItem[] = [
             {
                 title: 'Сварочные колонны',
                 route: '/welding-columns',
-                tag: 'welding-columns'
+                tag: 'welding-columns',
+                imageUrl: '/categoryImage/childrenImg/Kolona.svg',
             },
             {
                 title: 'Сварочные манипуляторы',
                 route: '/welding-manipulators',
-                tag: 'welding-manipulators'
+                tag: 'welding-manipulators',
+                imageUrl: '/categoryImage/childrenImg/Manipulator.svg',
             },
             {
                 title: 'Оборудование для сварки резервуаров',
                 route: '/equipment-for-tank-welding',
-                tag: 'equipment-for-tank-welding'
+                tag: 'equipment-for-tank-welding',
+                imageUrl: '/categoryImage/childrenImg/Rezervuar.svg',
             },
             {
                 title: 'Сварочные каретки',
                 route: '/welding-carriages',
-                tag: 'welding-carriages'
+                tag: 'welding-carriages',
+                imageUrl: '/categoryImage/childrenImg/Karetka.svg',
             },
             {
                 title: 'Системы слежения',
                 route: '/tracking-systems',
-                tag: 'tracking-systems'
+                tag: 'tracking-systems',
+                imageUrl: '/categoryImage/childrenImg/Sled.svg',
             },
             {
                 title: 'Роликовые опоры',
                 route: '/roller-supports',
-                tag: 'roller-supports'
+                tag: 'roller-supports',
+                imageUrl: '/categoryImage/childrenImg/Rolik.svg',
             }
         ]
     },
@@ -349,47 +365,57 @@ const menuItems: MenuItem[] = [
             {
                 title: 'Электрододержатели',
                 route: '/electrode-holders',
-                tag: 'electrode-holders'
+                tag: 'electrode-holders',
+                imageUrl: '/categoryImage/childrenImg/Electrodid.svg',
             },
             {
                 title: 'Клеммы заземления',
                 route: '/grounding-clamps',
-                tag: 'grounding-clamps'
+                tag: 'grounding-clamps',
+                imageUrl: '/categoryImage/childrenImg/Klemi.svg',
             },
             {
                 title: 'Разъёмы',
                 route: '/connectors',
-                tag: 'connectors'
+                tag: 'connectors',
+                imageUrl: '/categoryImage/childrenImg/Razem.svg',
             },
             {
                 title: 'Сварочные шаблоны',
                 route: '/welding-templates',
-                tag: 'welding-templates'
+                tag: 'welding-templates',
+                imageUrl: '/categoryImage/childrenImg/Shabl.svg',
+                
             },
             {
                 title: 'Маркеры',
                 route: '/markers',
-                tag: 'markers'
+                tag: 'markers',
+                imageUrl: '/categoryImage/childrenImg/Marker.svg',
             },
             {
                 title: 'Сварочные маски',
                 route: '/welding-masks',
-                tag: 'welding-masks'
+                tag: 'welding-masks',
+                imageUrl: '/categoryImage/childrenImg/Maska.svg',
             },
             {
                 title: 'Сварочные краги',
                 route: '/welding-aprons',
-                tag: 'welding-aprons'
+                tag: 'welding-aprons',
+                imageUrl: '/categoryImage/childrenImg/Kragi.svg',
             },
             {
                 title: 'Защитные стекла',
                 route: '/protective-glasses',
-                tag: 'protective-glasses'
+                tag: 'protective-glasses',
+                imageUrl: '/categoryImage/childrenImg/Stekla.svg',
             },
             {
                 title: 'Диски и Щетки',
                 route: '/disks-brushes',
-                tag: 'disks-brushes'
+                tag: 'disks-brushes',
+                imageUrl: '/categoryImage/childrenImg/Diski.svg',
             }
         ]
     },
@@ -402,12 +428,14 @@ const menuItems: MenuItem[] = [
             {
                 title: 'Сварка лазером',
                 route: '/laser-welding',
-                tag: 'laser-welding'
+                tag: 'laser-welding',
+                imageUrl: '/categoryImage/childrenImg/Svarkabylaser.svg',
             },
             {
                 title: 'Лазерная резка',
                 route: '/laser-cutting',
-                tag: 'laser-cutting'
+                tag: 'laser-cutting',
+                imageUrl: '/categoryImage/childrenImg/Rezkalaser.svg',
             }
         ]
     },
@@ -420,12 +448,14 @@ const menuItems: MenuItem[] = [
             {
                 title: 'KOHLER',
                 route: '/kohler',
-                tag: 'kohler'
+                tag: 'kohler',
+                imageUrl: '/categoryImage/childrenImg/Kohler.svg',
             },
             {
                 title: 'Электрические платы и детали',
                 route: '/electrical-boards-parts',
-                tag: 'electrical-boards-parts'
+                tag: 'electrical-boards-parts',
+                imageUrl: '/categoryImage/childrenImg/ElectroPlata.svg',
             }
         ]
     }

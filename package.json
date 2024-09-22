@@ -35,6 +35,9 @@
     "@uidotdev/usehooks": "^2.4.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "embla-carousel": "^8.2.1",
+    "embla-carousel-autoplay": "^8.2.1",
+    "embla-carousel-react": "^8.2.1",
     "framer-motion": "^11.2.12",
     "html-react-parser": "^5.1.12",
     "jwt-decode": "^4.0.0",
@@ -51,7 +54,6 @@
     "react-slider": "^2.0.6",
     "react-spinners": "^0.14.1",
     "slick-carousel": "^1.8.1",
-    "swiper": "^11.1.7",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
     "use-debounce": "^10.0.1"

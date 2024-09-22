@@ -8,7 +8,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   return (
     <ClientOnly>
       <CartProvider>
-      <NextTopLoader />
+      <NextTopLoader showSpinner={false}  />
         {children}
       </CartProvider>
     </ClientOnly>

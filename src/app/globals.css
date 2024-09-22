@@ -3,19 +3,40 @@
 @tailwind utilities;
 
 .spinner {
-	border-top-color: transparent;
-	border-right-color: transparent;
-	animation: spin 1s linear infinite;
-  }
-
-#nprogress .bar {
-	@apply bg-red-1 !important;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  animation: spin 1s linear infinite;
 }
 
 #nprogress .bar {
-	@apply shadow-md shadow-red-1 !important;
+  @apply bg-red-1 !important;
 }
 
 #nprogress .bar {
-	@apply border-t-red-1 border-l-red-1 !important;
+  @apply shadow-md shadow-red-1 !important;
+}
+
+#nprogress .bar {
+  @apply border-t-red-1 border-l-red-1 !important;
+}
+
+#nprogress .spinner {
+  display: 0;
+}
+
+.embla {
+  overflow: hidden;
+}
+
+.embla__container {
+  display: flex;
+  flex-direction: row;
+  will-change: transform;
+  height: 100%;
+}
+
+.embla__slide {
+  position: relative;
+  min-width: 100%;
+  height: 100%;
 }
